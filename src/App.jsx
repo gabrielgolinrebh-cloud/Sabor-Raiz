@@ -2,11 +2,11 @@ import { browserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './Home';
 import Catalogo from './Catalogo';
-import Cestaspersonalizadas from './cestaspersonalizadas';
-import Contato from './contato';
-import Pedidos from './pedidos';
-import ProdutosRegionais from './produtosregionais';
-import Sobre from './sobre';
+import Cestaspersonalizadas from './CestasPersonalizadas';
+import Contatos from './Contatos';
+import Pedidos from './Pedidos';
+import ProdutosRegionais from './ProdutosRegionais';
+import Sobre from './Sobre';
 
 function App() {
   return (
