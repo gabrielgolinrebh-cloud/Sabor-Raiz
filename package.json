@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node --watch backend/server.js",
+    "dev:all": "concurrenly \"npm run server\" \"npm run dev\"",
+    "setup-db": "node backend/setupDataBase.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
