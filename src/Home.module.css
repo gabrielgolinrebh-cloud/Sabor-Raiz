@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Configurações Globais e Tipografia
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Suavização de fontes global */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-title {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* ==========================================================================
+   Seção Sobre Nós & Ornamentos
+   ========================================================================== */
+.border-ornament {
+  border: 1px solid #D1A054; /* gold */
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.border-ornament:hover {
+  transform: scale(1.015);
+  box-shadow: 0 15px 30px rgba(74, 52, 40, 0.12);
+}
+
+.border-ornament::before, 
+.border-ornament::after {
+  content: '❖';
+  position: absolute;
+  color: #D1A054; /* gold */
+  font-size: 12px;
+  background: #F6EBD9; /* cream */
+  padding: 0 4px;
+}
+
+.border-ornament::before { top: -9px; left: 50%; transform: translateX(-50%); }
+.border-ornament::after { bottom: -9px; left: 50%; transform: translateX(-50%); }
+
+/* ==========================================================================
+   Cabeçalho (Navbar) e Links Dinâmicos
+   ========================================================================== */
+
+/* Links do Menu Desktop */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #D1A054; /* gold */
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Ajustado para funcionar perfeitamente com CSS Modules */
+.stickyHeader {
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  background-color: rgba(246, 235, 217, 0.92) !important; /* cream translúcido */
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   Animações Especiais
+   ========================================================================== */
+
+/* Animação do Selo Flutuante SR */
+.floating-badge {
+  animation: floatSR 4s ease-in-out infinite;
+}
+
+@keyframes floatSR {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* ==========================================================================
+   Botões (Hero Section)
+   ========================================================================== */
+.hero-btn {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.3s ease, 
+              filter 0.2s ease !important;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-btn-primary:hover {
+  filter: brightness(0.9);
+  box-shadow: 0 10px 20px rgba(185, 106, 67, 0.4); /* terracotta glow */
+}
+
+/* ==========================================================================
+   Cards do Catálogo (Grid de Produtos)
+   ========================================================================== */
+.catalog-card {
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+.catalog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 25px -5px rgba(74, 52, 40, 0.15) !important; /* brown shadow */
+}
+
+/* Linha nos botões internos dos cards */
+.card-btn {
+  position: relative;
+}
+
+.card-btn::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #B96A43; /* terracotta */
+  transition: width 0.3s ease;
+}
+
+.catalog-card:hover .card-btn::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Footer e Redes Sociais
+   ========================================================================== */
+
+/* Links do Rodapé */
+.footer-link {
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.footer-link:hover {
+  padding-left: 6px;
+  color: #D1A054 !important; /* gold */
+}
+
+/* Redes Sociais */
+.social-icon {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-icon:hover {
+  background-color: #D1A054 !important; /* gold */
+  color: #2F5D50 !important;            /* green */
+  transform: translateY(-4px);
+  border-color: #D1A054 !important;
+}
