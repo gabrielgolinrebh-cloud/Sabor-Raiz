@@ -35,7 +35,6 @@ function App() {
     carregarTarefas();
   }
   return (
-<<<<<<< HEAD
     <>
       <section id="center">
         <div className="hero">
@@ -145,34 +144,5 @@ function App() {
       <section id="spacer"></section>
     </>
   )
-=======
-    <div>
-      <h1>Lista de Tarefas</h1>
-      <form onSubmit={adicionarTarefa}>
-        <input
-          value={descricao}
-          onChange={(event) => setDescricao(event.target.value)}
-          placeholder="Digite uma tarefa"
-        />
-        <button type="submit">Adicionar</button>
-      </form>
-      <ul>
-        {tarefas.map((tarefa) => (
-          <li key={tarefa.id}>
-            <span>
-              {tarefa.descricao} - {tarefa.status ? 'Concluida' : 'Pendente'}
-            </span>
-            <button onClick={() => alternarStatus(tarefa)}>
-              Alterar status
-            </button>
-            <button onClick={() => excluirTarefa(tarefa.id)}>
-              Excluir
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
->>>>>>> d868aa2fb36d5a947e2fa5115703bada4256fe58
 }
 export default App;
