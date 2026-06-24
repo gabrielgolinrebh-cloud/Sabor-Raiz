@@ -8,16 +8,14 @@
     "server": "node --watch backend/server.js",
     "dev:all": "concurrenly \"npm run server\" \"npm run dev\"",
     "setup-db": "node backend/setupDataBase.js",
-
     "sql:create": "node backend/sql/sqlCreateTable.js",
-"sql:drop": "node backend/sql/sqlDropTable.js",
-"sql:alter": "node backend/sql/sqlAlterTable.js",
-"sql:insert": "node backend/sql/sqlInsert.js",
-"sql:select": "node backend/sql/sqlSelect.js",
-"sql:update": "node backend/sql/sqlUpdate.js",
-"sql:delete": "node backend/sql/sqlDelete.js",
-"sql:run": "node backend/sql/sqlRunQuery.js",
-
+    "sql:drop": "node backend/sql/sqlDropTable.js",
+    "sql:alter": "node backend/sql/sqlAlterTable.js",
+    "sql:insert": "node backend/sql/sqlInsert.js",
+    "sql:select": "node backend/sql/sqlSelect.js",
+    "sql:update": "node backend/sql/sqlUpdate.js",
+    "sql:delete": "node backend/sql/sqlDelete.js",
+    "sql:run": "node backend/sql/sqlRunQuery.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -28,7 +26,8 @@
     "express": "^5.2.1",
     "mysql2": "^3.22.5",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "react-router-dom": "^7.18.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
