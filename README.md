@@ -1,16 +1,24 @@
-# React + Vite
+# Sabor Raiz (Website de Empresa de Confeção de Presentes)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Sobre a Empresa
+Breve descrição da empresa que motivou a criação do sistema (ex: "A TechClean é uma lavanderia automatizada que precisa controlar seus pedidos...").
 
-Currently, two official plugins are available:
+## Objetivo do Sistema
+Explicar o que o software resolve. (ex: "O objetivo deste sistema é permitir que os clientes agendem horários e os administradores gerenciem o fluxo de lavagem.")
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Integrantes do Grupo
+* Nome do Integrante 1 - RM / Função (ex: Desenvolvedor Front-end)
+* Nome do Integrante 2 - RM / Função
 
-## React Compiler
+## Recursos Utilizados
+* JavaScript (.js)
+* React (.jsx)
+* CSS (.module.CSS)
+* MySQL (sql)
+* GitHub (repositório)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Como Instalar e Executar o Projeto
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone o repositório:
+   ```bash
+   git clone [https://link-do-seu-repositorio.git](https://link-do-seu-repositorio.git)
