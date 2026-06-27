@@ -1,7 +1,7 @@
 # Sabor Raiz (Website de Empresa de Confeção de Presentes)
 
 ## Sobre a Empresa
-Acelera o processo de encomenda personalizada e venda de produtos relacioandos a presentes.
+Venda de cestas artesanais, produtos regionais e presentes personalizados. A marca valoriza produtores locais, alimentos artesanais e experiências afetivas, oferecendo cestas para datas comemorativas, empresas e clientes que buscam presentes diferenciados.
 
 ## Sobre a Arquitetura
 `estruturação em andamento...`
@@ -42,5 +42,5 @@ Acelera o processo de encomenda personalizada e venda de produtos relacioandos a
     * `POST /pedidos:id` - Fazer pedido.
     * `POST /pedidos:id` - Cancelar pedido.
 
-## Imagens
-   ![Logs](docs/imagens/logs_27_06_26.png)
+## Logo
+   ![Logo Sabor Raiz](docs/imagens/logo_Sabor_Raiz.png)
