@@ -1,15 +1,14 @@
-# Sabor Raiz (Website de Empresa de Confeção de Presentes)
+# Sabor Raiz
 
-## Logo
    ![Logo Sabor Raiz](docs/imagens/logo_Sabor_Raiz.png)
 
 ## Sobre a Empresa
 Venda de cestas artesanais, produtos regionais e presentes personalizados. A marca valoriza produtores locais, alimentos artesanais e experiências afetivas, oferecendo cestas para datas comemorativas, empresas e clientes que buscam presentes diferenciados.
 
 ## Sobre a Arquitetura
-`estruturação em andamento...`
+Sabor Raiz adota uma arquitetura baseada no modelo Cliente-Servidor com total desacoplamento entre as camadas, onde o Frontend é desenvolvido em React (com Vite e CSS Modules) para proporcionar uma interface responsiva e focada na experiência do usuário, enquanto o Backend opera como uma API RESTful estruturada em Node.js com Express, para gerenciamento das as regras de negócio, a segurança e a comunicação direta com o banco de dados relacional MySQL.
 
-___________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________________________________
 
 ## Integrantes do Grupo
 * Brenon Gustavo Fossa
@@ -17,7 +16,7 @@ ________________________________________________________________________________
 * Flávia Caroline Sentena
 * Kauã Kousen
 
-___________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________________________________
 
 ## Como instalar e executar
 
@@ -35,7 +34,7 @@ cd backend
 npm install
 npm start
 
-___________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________________________________
 
 ## Variáveis de Ambiente
 DB_HOST=*hospedagem*
@@ -58,7 +57,7 @@ DB_PASSWORD=*senha do banco de dados*
 ## Repositório do Projeto (GitHub)
 1. git clone https://github.com/gabrielgolinrebh-cloud/Sabor-Raiz
 
-___________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________________________________
 
 ## Entidades
 * **Cliente:** Nome, Email, CPF, Senha, Telefone, Endereço.
@@ -80,7 +79,7 @@ ________________________________________________________________________________
     * `POST /pedidos:id` - Fazer pedido.
     * `POST /pedidos:id` - Cancelar pedido.
 
-___________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________________________________
 
 ## Status
 * Em andamento >> planejando `visual` e última etapa de `Backend DataBase`
