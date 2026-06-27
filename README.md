@@ -31,11 +31,16 @@ Acelera o processo de encomenda personalizada e venda de produtos relacioandos a
 * **Clientes:**
     * `POST /clientes` - Cadastrar novo cliente.
     * `GET /clientes` - Listar todos clientes.
+    * `PUT /clientes:id` - Editar cliente.
+    * `PUT /clientes:id` - Excluir cliente.
 * **Produtos:**
     * `GET /produtos` - Listar todos produtos disponíveis.
+    * `GET /produtos:id` - Pesquisar produto.
     * `POST /produtos` - Adicionar novo produto (exclusivamente Admins).
+    * `POST /produtos:id` - Remover produto (exclusivamente Admins).
 * **Pedidos:**
-    * `POST /pedidos` - Criar novo pedido.
+    * `POST /pedidos:id` - Fazer pedido.
+    * `POST /pedidos:id` - Cancelar pedido.
 
 ## Imagens
    ![Logs](docs/imagens/logs_27_06_26.png)
