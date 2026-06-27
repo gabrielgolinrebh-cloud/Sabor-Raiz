@@ -1,14 +1,16 @@
 # Sabor Raiz (Website de Empresa de Confeção de Presentes)
 
 ## Sobre a Empresa
-Breve descrição da empresa que motivou a criação do sistema (ex: "A TechClean é uma lavanderia automatizada que precisa controlar seus pedidos...").
+Acelera o processo de encomenda personalizada e venda de produtos relacioandos a presentes.
 
-## Objetivo do Sistema
-Explicar o que o software resolve. (ex: "O objetivo deste sistema é permitir que os clientes agendem horários e os administradores gerenciem o fluxo de lavagem.")
+## Sobre a Arquitetura
+`estruturação em andamento...`
 
 ## Integrantes do Grupo
-* Nome do Integrante 1 - RM / Função (ex: Desenvolvedor Front-end)
-* Nome do Integrante 2 - RM / Função
+* Brenon Gustavo Fossa
+* Gabriel Golin
+* Flávia Caroline Sentena
+* Kauã Kousen
 
 ## Recursos Utilizados
 * JavaScript (.js)
@@ -17,8 +19,23 @@ Explicar o que o software resolve. (ex: "O objetivo deste sistema é permitir qu
 * MySQL (sql)
 * GitHub (repositório)
 
-## Como Instalar e Executar o Projeto
+## Repositório do Projeto (GitHub)
+1. git clone https://github.com/gabrielgolinrebh-cloud/Sabor-Raiz
 
-1. Clone o repositório:
-   ```bash
-   git clone [https://link-do-seu-repositorio.git](https://link-do-seu-repositorio.git)
+## Entidades
+* **Cliente:** Nome, Email, CPF, Senha, Telefone, Endereço.
+* **Produto:** Nome, Preço, Descrição, Estoque, Categoria.
+* **Pedido:** ID Pedido, Cliente (ID Pedido), Data, Status, Valor Total.
+
+## Endpoints
+* **Clientes:**
+    * `POST /clientes` - Cadastrar novo cliente.
+    * `GET /clientes` - Listar todos clientes.
+* **Produtos:**
+    * `GET /produtos` - Listar todos produtos disponíveis.
+    * `POST /produtos` - Adicionar novo produto (exclusivamente Admins).
+* **Pedidos:**
+    * `POST /pedidos` - Criar novo pedido.
+
+## Imagens
+   ![Logs](docs/imagens/logs_27_06_26.png)
