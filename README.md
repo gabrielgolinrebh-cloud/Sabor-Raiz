@@ -1,10 +1,15 @@
 # Sabor Raiz (Website de Empresa de Confeção de Presentes)
 
+## Logo
+   ![Logo Sabor Raiz](docs/imagens/logo_Sabor_Raiz.png)
+
 ## Sobre a Empresa
 Venda de cestas artesanais, produtos regionais e presentes personalizados. A marca valoriza produtores locais, alimentos artesanais e experiências afetivas, oferecendo cestas para datas comemorativas, empresas e clientes que buscam presentes diferenciados.
 
 ## Sobre a Arquitetura
 `estruturação em andamento...`
+
+___________________________________________________________________________________________________________________________________
 
 ## Integrantes do Grupo
 * Brenon Gustavo Fossa
@@ -12,15 +17,48 @@ Venda de cestas artesanais, produtos regionais e presentes personalizados. A mar
 * Flávia Caroline Sentena
 * Kauã Kousen
 
+___________________________________________________________________________________________________________________________________
+
+## Como instalar e executar
+
+* Clone o repositório:
+git clone https://github.com/gabrielgolinrebh-cloud/Sabor-Raiz
+* Acesse a pasta do projeto:
+cd Sabor-Raiz
+* Instale as dependências:
+npm install
+* Execute o projeto:
+npm run dev
+
+* Acesso ao Backend:
+cd backend
+npm install
+npm start
+
+___________________________________________________________________________________________________________________________________
+
+## Variáveis de Ambiente
+DB_HOST=*hospedagem*
+DB_PORT=*porta de conexão*
+DB_NAME=*banco de dados*
+DB_USER=*usuário admin*
+DB_PASSWORD=*senha do banco de dados*
+
+
 ## Recursos Utilizados
+* Node.js (prop)
+* Vite (prop)
+* Express (prop)
 * JavaScript (.js)
 * React (.jsx)
 * CSS (.module.CSS)
-* MySQL (sql)
+* MySQL (mysql2)
 * GitHub (repositório)
 
 ## Repositório do Projeto (GitHub)
 1. git clone https://github.com/gabrielgolinrebh-cloud/Sabor-Raiz
+
+___________________________________________________________________________________________________________________________________
 
 ## Entidades
 * **Cliente:** Nome, Email, CPF, Senha, Telefone, Endereço.
@@ -42,5 +80,7 @@ Venda de cestas artesanais, produtos regionais e presentes personalizados. A mar
     * `POST /pedidos:id` - Fazer pedido.
     * `POST /pedidos:id` - Cancelar pedido.
 
-## Logo
-   ![Logo Sabor Raiz](docs/imagens/logo_Sabor_Raiz.png)
+___________________________________________________________________________________________________________________________________
+
+## Status
+* Em andamento >> planejando `visual` e última etapa de `Backend DataBase`
