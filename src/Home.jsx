@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Menu, X, ShoppingBasket, User, Search, MapPin, Heart, ArrowRight, Leaf, ShieldCheck, Truck } from 'lucide-react';
 import style from './Home.module.css';
 
+
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -13,7 +15,7 @@ export default function App() {
     cream: '#F6EBD9',
     brown: '#4A3428',
   };
-
+console.log('Meus estilos:', style);
   return (
     <div className="min-h-screen" style={{ backgroundColor: colors.cream, color: colors.brown, fontFamily: "'Montserrat', sans-serif" }}>
       
@@ -291,3 +293,4 @@ export default function App() {
     </div>
   );
 }
+
