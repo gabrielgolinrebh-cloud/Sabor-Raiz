@@ -1,16 +1,85 @@
-# React + Vite
+# Sabor Raiz
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+   ![Logo Sabor Raiz](docs/imagens/logo_Sabor_Raiz.png)
 
-Currently, two official plugins are available:
+## Sobre a Empresa
+Venda de cestas artesanais, produtos regionais e presentes personalizados. A marca valoriza produtores locais, alimentos artesanais e experiências afetivas, oferecendo cestas para datas comemorativas, empresas e clientes que buscam presentes diferenciados.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Sobre a Arquitetura
+Sabor Raiz adota uma arquitetura baseada no modelo Cliente-Servidor com total desacoplamento entre as camadas, onde o Frontend é desenvolvido em React (com Vite e CSS Modules) para proporcionar uma interface responsiva e focada na experiência do usuário, enquanto o Backend opera como uma API RESTful estruturada em Node.js com Express, para gerenciamento das as regras de negócio, a segurança e a comunicação direta com o banco de dados relacional MySQL.
 
-## React Compiler
+___________________________________________________________________________________________________________________________________________________
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Integrantes do Grupo
+* Brenon Gustavo Fossa
+* Gabriel Golin
+* Flávia Caroline Sentena
+* Kauã Kousen
 
-## Expanding the ESLint configuration
+___________________________________________________________________________________________________________________________________________________
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Como instalar e executar
+
+* Clone o repositório:
+git clone https://github.com/gabrielgolinrebh-cloud/Sabor-Raiz
+* Acesse a pasta do projeto:
+cd Sabor-Raiz
+* Instale as dependências:
+npm install
+* Execute o projeto:
+npm run dev
+
+* Acesso ao Backend:
+cd backend
+npm install
+npm start
+
+___________________________________________________________________________________________________________________________________________________
+
+## Variáveis de Ambiente
+DB_HOST=*hospedagem*
+DB_PORT=*porta de conexão*
+DB_NAME=*banco de dados*
+DB_USER=*usuário admin*
+DB_PASSWORD=*senha do banco de dados*
+
+
+## Recursos Utilizados
+* Node.js (prop)
+* Vite (prop)
+* Express (prop)
+* JavaScript (.js)
+* React (.jsx)
+* CSS (.module.CSS)
+* MySQL (mysql2)
+* GitHub (repositório)
+
+## Repositório do Projeto (GitHub)
+1. git clone https://github.com/gabrielgolinrebh-cloud/Sabor-Raiz
+
+___________________________________________________________________________________________________________________________________________________
+
+## Entidades
+* **Cliente:** Nome, Email, CPF, Senha, Telefone, Endereço.
+* **Produto:** Nome, Preço, Descrição, Estoque, Categoria.
+* **Pedido:** ID Pedido, Cliente (ID Pedido), Data, Status, Valor Total.
+
+## Endpoints
+* **Clientes:**
+    * `POST /clientes` - Cadastrar novo cliente.
+    * `GET /clientes` - Listar todos clientes.
+    * `PUT /clientes:id` - Editar cliente.
+    * `PUT /clientes:id` - Excluir cliente.
+* **Produtos:**
+    * `GET /produtos` - Listar todos produtos disponíveis.
+    * `GET /produtos:id` - Pesquisar produto.
+    * `POST /produtos` - Adicionar novo produto (exclusivamente Admins).
+    * `POST /produtos:id` - Remover produto (exclusivamente Admins).
+* **Pedidos:**
+    * `POST /pedidos:id` - Fazer pedido.
+    * `POST /pedidos:id` - Cancelar pedido.
+
+___________________________________________________________________________________________________________________________________________________
+
+## Status
+* Em andamento >> planejando `visual` e última etapa de `Backend DataBase`
