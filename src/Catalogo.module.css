@@ -1,0 +1,183 @@
+/* Importação das fontes direto do Google Fonts para garantir que funcionem */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+.catalogoContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #F6EBD9; /* Fundo Creme */
+  color: #4A3428; /* Texto Marrom Escuro */
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.subtitulo {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #B96A43; /* Terracota */
+  font-weight: 600;
+}
+
+.titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  color: #2F5D50; /* Verde Escuro */
+  margin: 10px 0 15px 0;
+  font-weight: 700;
+}
+
+.descricaoBreve {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4A3428;
+}
+
+/* Filtros */
+.filtros {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.botaoFiltro {
+  background-color: transparent;
+  border: 1px solid #D1A054; /* Ouro/Mostarda */
+  color: #4A3428;
+  padding: 10px 22px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.botaoFiltro:hover, 
+.botaoFiltro.ativo {
+  background-color: #2F5D50; /* Verde Escuro */
+  border-color: #2F5D50;
+  color: #F6EBD9; /* Creme */
+}
+
+/* Grid de Produtos */
+.gridProdutos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Card Individual */
+.cardProduto {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(74, 52, 40, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(209, 160, 84, 0.2);
+}
+
+.cardProduto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(47, 93, 80, 0.15);
+}
+
+.wrapperImagem {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background-color: #F6EBD9;
+}
+
+.imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cardProduto:hover .imagem {
+  transform: scale(1.05);
+}
+
+.infoProduto {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.nomeProduto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: #2F5D50;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.descricaoProduto {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #66554B;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.footerCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.preco {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #B96A43; /* Terracota */
+}
+
+.botaoAdicionar {
+  background-color: #D1A054; /* Mostarda/Ouro */
+  color: #4A3428;
+  border: none;
+  padding: 8px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.botaoAdicionar:hover {
+  background-color: #B96A43; /* Transiciona para o Terracota no hover */
+  color: #F6EBD9;
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 2.3rem;
+  }
+  
+  .filtros {
+    gap: 10px;
+  }
+  
+  .botaoFiltro {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
