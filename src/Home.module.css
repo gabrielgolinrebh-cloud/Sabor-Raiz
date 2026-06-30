@@ -1,9 +1,8 @@
-  /* ==========================================================================
+/* ==========================================================================
     Configurações Globais e Tipografia
     ========================================================================== */
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-  /* Suavização de fontes global */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -17,7 +16,7 @@
     Seção Sobre Nós & Ornamentos
     ========================================================================== */
   .border-ornament {
-    border: 1px solid #D1A054; /* gold */
+    border: 1px solid #D1A054;
     position: relative;
     transition: transform 0.5s ease, box-shadow 0.5s ease;
   }
@@ -31,9 +30,9 @@
   .border-ornament::after {
     content: '❖';
     position: absolute;
-    color: #D1A054; /* gold */
+    color: #D1A054;
     font-size: 12px;
-    background: #F6EBD9; /* cream */
+    background: #F6EBD9;
     padding: 0 4px;
   }
 
@@ -41,43 +40,8 @@
   .border-ornament::after { bottom: -9px; left: 50%; transform: translateX(-50%); }
 
   /* ==========================================================================
-    Cabeçalho (Navbar) e Links Dinâmicos
-    ========================================================================== */
-
-  /* Links do Menu Desktop */
-  .nav-link {
-    position: relative;
-    transition: color 0.3s ease;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: #D1A054; /* gold */
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  /* Ajustado para funcionar perfeitamente com CSS Modules */
-  .stickyHeader {
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    background-color: rgba(246, 235, 217, 0.92) !important; /* cream translúcido */
-    transition: all 0.3s ease;
-  }
-
-  /* ==========================================================================
     Animações Especiais
     ========================================================================== */
-
-  /* Animação do Selo Flutuante SR */
   .floating-badge {
     animation: floatSR 4s ease-in-out infinite;
   }
@@ -104,7 +68,7 @@
 
   .hero-btn-primary:hover {
     filter: brightness(0.9);
-    box-shadow: 0 10px 20px rgba(185, 106, 67, 0.4); /* terracotta glow */
+    box-shadow: 0 10px 20px rgba(185, 106, 67, 0.4);
   }
 
   /* ==========================================================================
@@ -117,10 +81,9 @@
 
   .catalog-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 25px -5px rgba(74, 52, 40, 0.15) !important; /* brown shadow */
+    box-shadow: 0 20px 25px -5px rgba(74, 52, 40, 0.15) !important;
   }
 
-  /* Linha nos botões internos dos cards */
   .card-btn {
     position: relative;
   }
@@ -132,7 +95,7 @@
     height: 2px;
     bottom: -2px;
     left: 0;
-    background-color: #B96A43; /* terracotta */
+    background-color: #B96A43;
     transition: width 0.3s ease;
   }
 
@@ -143,8 +106,6 @@
   /* ==========================================================================
     Footer e Redes Sociais
     ========================================================================== */
-
-  /* Links do Rodapé */
   .footer-link {
     transition: all 0.2s ease;
     display: inline-block;
@@ -152,17 +113,16 @@
 
   .footer-link:hover {
     padding-left: 6px;
-    color: #D1A054 !important; /* gold */
+    color: #D1A054 !important;
   }
 
-  /* Redes Sociais */
   .social-icon {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .social-icon:hover {
-    background-color: #D1A054 !important; /* gold */
-    color: #2F5D50 !important;            /* green */
+    background-color: #D1A054 !important;
+    color: #2F5D50 !important;
     transform: translateY(-4px);
     border-color: #D1A054 !important;
   }
