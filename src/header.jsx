@@ -26,15 +26,10 @@ export default function Header({ colors, setTelaAtual }) {
           </div>
 
           {/* Logo Textual - Ajustado para ficar menor e mais proporcional */}
-          <div className="flex-shrink-0 flex flex-col items-center justify-center cursor-pointer select-none" onClick={() => navegarPara('home')}>
-            <h1 className="font-title text-xl sm:text-2xl md:text-3xl font-semibold flex items-center" style={{ color: colors.terracotta }}>
+          <div className="flex-shrink-0 flex items-center justify-center cursor-pointer select-none" onClick={() => navegarPara('home')}>
+            <h1 className="font-title text-xl sm:text-2xl md:text-3xl font-semibold" style={{ color: colors.terracotta }}>
               Sabor<span style={{ color: colors.green }}>Raiz</span>
             </h1>
-            <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5">
-              <span className="h-px w-4 sm:w-6" style={{ backgroundColor: colors.gold }}></span>
-              <span className="text-[8px] sm:text-[10px] tracking-[0.3em] font-medium" style={{ color: colors.brown }}>CESTAS</span>
-              <span className="h-px w-4 sm:w-6" style={{ backgroundColor: colors.gold }}></span>
-            </div>
           </div>
 
           {/* Desktop Navigation */}

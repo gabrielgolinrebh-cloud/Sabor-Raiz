@@ -46,7 +46,7 @@ export default function App() {
 
       {/* GERENCIADOR DE PÁGINAS (CONTEÚDO DINÂMICO) */}
       <main className="flex-grow">
-        {telaAtual === 'home' && <Home colors={colors} />}
+        {telaAtual === 'home' && <Home colors={colors} setTelaAtual={setTelaAtual} />}
         
         {telaAtual === 'cadastro' && (
           <Cadastro aoVoltar={() => setTelaAtual('home')} aoMudarParaLogin={() => setTelaAtual('login')} />

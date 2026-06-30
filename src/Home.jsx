@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShoppingBasket, ArrowRight, Leaf, Heart, ShieldCheck, Truck } from 'lucide-react';
 
-export default function Home({ colors }) {
+export default function Home({ colors, setTelaAtual }) {
   return (
     <>
       {/* HERO SECTION */}
@@ -15,7 +15,7 @@ export default function Home({ colors }) {
           <h2 className="font-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg">Sabores que contam histórias.</h2>
           <p className="text-base sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-10 font-light max-w-2xl drop-shadow-md">Presentes que criam memórias.</p>
           <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 w-full sm:w-auto">
-            <button className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-sm text-white font-semibold transition-all hover:scale-105 flex items-center justify-center gap-2 shadow-md" style={{ backgroundColor: colors.terracotta }}>
+            <button onClick={() => setTelaAtual('catalogo')} className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-sm text-white font-semibold transition-all hover:scale-105 flex items-center justify-center gap-2 shadow-md" style={{ backgroundColor: colors.terracotta }}>
               Ver Catálogo <ShoppingBasket size={18} />
             </button>
             <button className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-sm font-semibold transition-all flex items-center justify-center gap-2 backdrop-blur-sm" style={{ backgroundColor: `${colors.cream}E6`, color: colors.green }}>
