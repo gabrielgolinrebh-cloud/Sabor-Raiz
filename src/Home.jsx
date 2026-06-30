@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, ShoppingBasket, User, Search, MapPin, Heart, ArrowRight, Leaf, ShieldCheck, Truck } from 'lucide-react';
-import style from './Home.module.css';
+import style from './Home.jsx';
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
