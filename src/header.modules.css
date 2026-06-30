@@ -1,0 +1,32 @@
+.font-title {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Links do Menu Desktop */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #D1A054; /* gold */
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Efeito de desfoque/sticky */
+.stickyHeader {
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  background-color: rgba(246, 235, 217, 0.92) !important; /* cream translúcido */
+  transition: all 0.3s ease;
+}
