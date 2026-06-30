@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, ShoppingBasket, User, Search, MapPin, Heart, ArrowRight, Leaf, ShieldCheck, Truck } from 'lucide-react';
 import style from './Home.module.css';
 
-
-
-export default function App() {
+export default function App({ aoDirecionarCadastro }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Paleta de Cores da Marca (img_05)
@@ -55,7 +53,7 @@ console.log('Meus estilos:', style);
             {/* Icons */}
             <div className="flex items-center space-x-4 md:space-x-6" style={{ color: colors.green }}>
               <button className="hover:opacity-70 hidden sm:block"><Search size={20} /></button>
-              <button className="hover:opacity-70 hidden sm:block"><User size={20} /></button>
+              <button onClick={aoDirecionarCadastro} className="hover:opacity-70 hidden sm:block"><User size={20} /></button>
               <button className="hover:opacity-70 relative flex items-center gap-2">
                 <ShoppingBasket size={24} />
                 <span className="absolute -top-2 -right-2 text-[10px] w-5 h-5 flex items-center justify-center rounded-full text-white" style={{ backgroundColor: colors.terracotta }}>
@@ -293,4 +291,3 @@ console.log('Meus estilos:', style);
     </div>
   );
 }
-
