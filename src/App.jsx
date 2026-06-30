@@ -6,6 +6,7 @@ import Header from './header';
 import Home from './Home';  
 import Sobre from './Sobre';
 import Catalogo from './Catalogo';
+import Pedidos from './Pedidos';
 
 export default function App() {
   // Estado atualizado para aceitar 'contatos' também
@@ -62,6 +63,10 @@ export default function App() {
 
         {telaAtual === 'catalogo' && (
           <Catalogo aoVoltar={() => setTelaAtual('home')} />
+        )}
+
+        {telaAtual === 'pedidos' && (
+          <Pedidos />
         )}
 
         {telaAtual === 'contatos' && (

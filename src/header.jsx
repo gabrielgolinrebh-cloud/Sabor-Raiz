@@ -45,7 +45,7 @@ export default function Header({ colors, setTelaAtual }) {
           <div className="flex items-center space-x-3 sm:space-x-4 md:space-x-6" style={{ color: colors.green }}>
             <button className="hover:opacity-70 p-1 hidden sm:block"><Search size={20} /></button>
             <button onClick={() => navegarPara('cadastro')} className="hover:opacity-70 p-1 hidden sm:block"><User size={20} /></button>
-            <button className="hover:opacity-70 p-1 relative flex items-center gap-1.5 focus:outline-none">
+            <button onClick={() => navegarPara('pedidos')} className="hover:opacity-70 p-1 relative flex items-center gap-1.5 focus:outline-none">
               <ShoppingBasket size={24} />
               <span className="absolute -top-1 -right-1 text-[9px] w-4 h-4 flex items-center justify-center rounded-full text-white font-semibold" style={{ backgroundColor: colors.terracotta }}>0</span>
             </button>
