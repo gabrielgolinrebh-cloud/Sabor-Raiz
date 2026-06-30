@@ -25,25 +25,27 @@ export default function Header({ colors, setTelaAtual }) {
             </button>
           </div>
 
-          {/* Logo Textual */}
+          {/* Logo Textual - Ajustado para ficar menor e mais proporcional */}
           <div className="flex-shrink-0 flex flex-col items-center justify-center cursor-pointer select-none" onClick={() => navegarPara('home')}>
-            <h1 className="font-title text-3xl sm:text-4xl md:text-5xl font-semibold flex items-center" style={{ color: colors.terracotta }}>
+            <h1 className="font-title text-xl sm:text-2xl md:text-3xl font-semibold flex items-center" style={{ color: colors.terracotta }}>
               Sabor<span style={{ color: colors.green }}>Raiz</span>
             </h1>
-            <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5 sm:mt-1">
-              <span className="h-px w-6 sm:w-8" style={{ backgroundColor: colors.gold }}></span>
-              <span className="text-[10px] sm:text-xs tracking-[0.3em] font-medium" style={{ color: colors.brown }}>CESTAS</span>
-              <span className="h-px w-6 sm:w-8" style={{ backgroundColor: colors.gold }}></span>
+            <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5">
+              <span className="h-px w-4 sm:w-6" style={{ backgroundColor: colors.gold }}></span>
+              <span className="text-[8px] sm:text-[10px] tracking-[0.3em] font-medium" style={{ color: colors.brown }}>CESTAS</span>
+              <span className="h-px w-4 sm:w-6" style={{ backgroundColor: colors.gold }}></span>
             </div>
           </div>
 
-          {/* Desktop Navigation (Mudança para direcionar telas) */}
-          <nav className="hidden md:flex space-x-6 lg:space-x-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-4 lg:space-x-6">
             <button onClick={() => navegarPara('home')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Home</button>
             <button onClick={() => navegarPara('sobre')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Sobre</button>
             <button onClick={() => navegarPara('catalogo')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Catálogo</button>
             <button onClick={() => navegarPara('cestas')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Cestas Personalizadas</button>
             <button onClick={() => navegarPara('produtos')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Produtos Regionais</button>
+            {/* Nova página adicionada abaixo */}
+            <button onClick={() => navegarPara('contatos')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Contatos</button>
           </nav>
 
           {/* Icons */}
@@ -65,10 +67,12 @@ export default function Header({ colors, setTelaAtual }) {
             <button onClick={() => navegarPara('home')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Home</button>
             <button onClick={() => navegarPara('sobre')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Sobre</button>
             <button onClick={() => navegarPara('catalogo')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Catálogo</button>
+            {/* Nova página adicionada no mobile abaixo */}
+            <button onClick={() => navegarPara('contatos')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Contatos</button>
             <button onClick={() => navegarPara('cadastro')} className="w-full text-left block px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Minha Conta / Cadastro</button>
           </nav>
         </div>
       )}
     </header>
   );
-}
+} 

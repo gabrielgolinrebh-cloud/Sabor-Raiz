@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { MapPin } from 'lucide-react';
 import Cadastro from './Cadastro';
 import Login from './Login';
-import Header from './Header'; 
+import Header from './header'; 
 import Home from './Home';  
 
 export default function App() {
-  const [telaAtual, setTelaAtual] = useState('home'); // 'home', 'cadastro', 'login', 'sobre', 'catalogo'
+  // Estado atualizado para aceitar 'contatos' também
+  const [telaAtual, setTelaAtual] = useState('home'); 
 
   const colors = {
     green: '#2F5D50',
@@ -38,7 +39,7 @@ export default function App() {
         `}
       </style>
 
-      {/* HEADER FIXO GLOBAL - Fica disponível em todas as páginas */}
+      {/* HEADER FIXO GLOBAL */}
       <Header colors={colors} setTelaAtual={setTelaAtual} />
 
       {/* GERENCIADOR DE PÁGINAS (CONTEÚDO DINÂMICO) */}
@@ -66,6 +67,10 @@ export default function App() {
             <p className="text-base leading-relaxed">Exibição de todos os produtos e filtros de busca do catálogo.</p>
           </div>
         )}
+
+        {telaAtual === 'contatos' && (
+          <Contatos colors={colors} />
+        )}
       </main>
 
       {/* FOOTER GLOBAL */}
@@ -81,6 +86,8 @@ export default function App() {
               <ul className="space-y-2.5 text-xs sm:text-sm opacity-85">
                 <li><button onClick={() => setTelaAtual('catalogo')} className="hover:text-white block bg-transparent border-none cursor-pointer">Catálogo de Cestas</button></li>
                 <li><button onClick={() => setTelaAtual('home')} className="hover:text-white block bg-transparent border-none cursor-pointer">Voltar ao Início</button></li>
+                {/* Link de contatos adicionado também no Footer */}
+                <li><button onClick={() => setTelaAtual('contatos')} className="hover:text-white block bg-transparent border-none cursor-pointer">Contatos / Suporte</button></li>
               </ul>
             </div>
             <div className="text-left">
