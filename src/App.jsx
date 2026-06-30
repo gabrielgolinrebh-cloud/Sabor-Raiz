@@ -5,6 +5,7 @@ import Login from './Login';
 import Header from './header'; 
 import Home from './Home';  
 import Sobre from './Sobre';
+import Catalogo from './Catalogo';
 
 export default function App() {
   // Estado atualizado para aceitar 'contatos' também
@@ -60,10 +61,7 @@ export default function App() {
         )}
 
         {telaAtual === 'catalogo' && (
-          <div className="py-32 text-center max-w-4xl mx-auto px-6">
-            <h2 className="font-title text-4xl sm:text-5xl mb-6" style={{ color: colors.green }}>Catálogo Completo de Cestas</h2>
-            <p className="text-base leading-relaxed">Exibição de todos os produtos e filtros de busca do catálogo.</p>
-          </div>
+          <Catalogo aoVoltar={() => setTelaAtual('home')} />
         )}
 
         {telaAtual === 'contatos' && (

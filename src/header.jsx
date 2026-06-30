@@ -42,8 +42,6 @@ export default function Header({ colors, setTelaAtual }) {
             <button onClick={() => navegarPara('home')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Home</button>
             <button onClick={() => navegarPara('sobre')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Sobre</button>
             <button onClick={() => navegarPara('catalogo')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Catálogo</button>
-            <button onClick={() => navegarPara('cestas')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Cestas Personalizadas</button>
-            <button onClick={() => navegarPara('produtos')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Produtos Regionais</button>
             {/* Nova página adicionada abaixo */}
             <button onClick={() => navegarPara('contatos')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Contatos</button>
           </nav>
