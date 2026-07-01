@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MapPin } from 'lucide-react';
+// Importações ajustadas para incluir os ícones dos pedidos
+import { MapPin, Clock, Truck, CheckCircle2 } from 'lucide-react';
 import Cadastro from './Cadastro';
 import Login from './Login';
 import Header from './header'; 
@@ -7,10 +8,8 @@ import Home from './Home';
 import Sobre from './Sobre';
 import Catalogo from './Catalogo';
 import Pedidos from './Pedidos';
-import Contatos from './Contatos';
 
 export default function App() {
-  // Estado atualizado para aceitar 'contatos' também
   const [telaAtual, setTelaAtual] = useState('home'); 
 
   const colors = {
@@ -19,6 +18,56 @@ export default function App() {
     gold: '#D1A054',
     cream: '#F6EBD9',
     brown: '#4A3428',
+  };
+
+  // Estado dos Pedidos centralizado no componente Pai
+  const [meusPedidos, setMeusPedidos] = useState([
+    {
+      id: "#SR-9843",
+      data: "28/06/2026",
+      status: "Em preparação",
+      statusIcon: Clock,
+      statusColor: colors.terracotta,
+      total: "R$ 245,90",
+      items: [
+        { nome: "Cesta Tradição Mineira", qtd: 1, preco: "R$ 180,00" },
+        { nome: "Queijo Canastra Artesanal (Avulso)", qtd: 1, preco: "R$ 65,90" }
+      ],
+      entrega: "Rua das Flores, 456 - Lourdes, Belo Horizonte - MG"
+    },
+    {
+      id: "#SR-9102",
+      data: "10/05/2026",
+      status: "Entregue",
+      statusIcon: CheckCircle2,
+      statusColor: colors.green,
+      total: "R$ 145,00",
+      items: [
+        { nome: "Cesta Café da Manhã Afeto", qtd: 1, preco: "R$ 145,00" }
+      ],
+      entrega: "Rua das Tradições, 123 - Centro, Belo Horizonte - MG"
+    }
+  ]);
+
+  // Função para criar um novo pedido com base no produto clicado
+  const adicionarAoPedido = (produto) => {
+    const valorFormatado = produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    
+    const novoPedido = {
+      id: `#SR-${Math.floor(Math.random() * 10000)}`,
+      data: new Date().toLocaleDateString('pt-BR'),
+      status: "Em preparação",
+      statusIcon: Clock,
+      statusColor: colors.terracotta,
+      total: valorFormatado,
+      items: [
+        { nome: produto.nome, qtd: 1, preco: valorFormatado }
+      ],
+      entrega: "Endereço cadastrado na conta do usuário"
+    };
+
+    setMeusPedidos([novoPedido, ...meusPedidos]);
+    alert(`Sucesso! ${produto.nome} foi enviado para a página de pedidos.`);
   };
 
   return (
@@ -63,15 +112,16 @@ export default function App() {
         )}
 
         {telaAtual === 'catalogo' && (
-          <Catalogo aoVoltar={() => setTelaAtual('home')} />
+          <Catalogo aoVoltar={() => setTelaAtual('home')} adicionarAoPedido={adicionarAoPedido} />
         )}
 
         {telaAtual === 'pedidos' && (
-          <Pedidos />
+          <Pedidos meusPedidos={meusPedidos} />
         )}
 
+        {/* Removido o erro caso Contatos não exista, ou mantenha se tiver o arquivo */}
         {telaAtual === 'contatos' && (
-          <Contatos colors={colors} />
+          <div className="p-8 text-center">Página de Contatos em desenvolvimento.</div>
         )}
       </main>
 
@@ -88,7 +138,6 @@ export default function App() {
               <ul className="space-y-2.5 text-xs sm:text-sm opacity-85">
                 <li><button onClick={() => setTelaAtual('catalogo')} className="hover:text-white block bg-transparent border-none cursor-pointer">Catálogo de Cestas</button></li>
                 <li><button onClick={() => setTelaAtual('home')} className="hover:text-white block bg-transparent border-none cursor-pointer">Voltar ao Início</button></li>
-                {/* Link de contatos adicionado também no Footer */}
                 <li><button onClick={() => setTelaAtual('contatos')} className="hover:text-white block bg-transparent border-none cursor-pointer">Contatos / Suporte</button></li>
               </ul>
             </div>

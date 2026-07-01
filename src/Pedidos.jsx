@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Package, Truck, CheckCircle2, Clock, ChevronDown, ChevronUp, ShoppingBag, MapPin, Calendar } from 'lucide-react';
+import { Package, ChevronDown, ChevronUp, ShoppingBag, MapPin, Calendar } from 'lucide-react';
 
-export default function Pedidos() {
+export default function Pedidos({ meusPedidos }) {
   // Estado para controlar quais pedidos estão expandidos para ver detalhes
   const [expandedPedido, setExpandedPedido] = useState(null);
   // Estado para filtrar os pedidos por status
@@ -16,52 +16,12 @@ export default function Pedidos() {
     brown: '#4A3428',
   };
 
-  // Dados fictícios de pedidos para demonstração
-  const pedidosMock = [
-    {
-      id: "#SR-9843",
-      data: "28/06/2026",
-      status: "Em preparação",
-      statusIcon: Clock,
-      statusColor: colors.terracotta,
-      total: "R$ 245,90",
-      items: [
-        { nome: "Cesta Tradição Mineira", qtd: 1, preco: "R$ 180,00" },
-        { nome: "Queijo Canastra Artesanal (Avulso)", qtd: 1, preco: "R$ 65,90" }
-      ],
-      entrega: "Rua das Flores, 456 - Lourdes, Belo Horizonte - MG"
-    },
-    {
-      id: "#SR-9512",
-      data: "15/06/2026",
-      status: "A caminho",
-      statusIcon: Truck,
-      statusColor: colors.gold,
-      total: "R$ 320,00",
-      items: [
-        { nome: "Cesta Corporativa Premium", qtd: 2, preco: "R$ 160,00" }
-      ],
-      entrega: "Av. Afonso Pena, 1200 - Centro, Belo Horizonte - MG"
-    },
-    {
-      id: "#SR-9102",
-      data: "10/05/2026",
-      status: "Entregue",
-      statusIcon: CheckCircle2,
-      statusColor: colors.green,
-      total: "R$ 145,00",
-      items: [
-        { nome: "Cesta Café da Manhã Afeto", qtd: 1, preco: "R$ 145,00" }
-      ],
-      entrega: "Rua das Tradições, 123 - Centro, Belo Horizonte - MG"
-    }
-  ];
-
   const toggleExpand = (id) => {
     setExpandedPedido(expandedPedido === id ? null : id);
   };
 
-  const pedidosFiltrados = pedidosMock.filter(pedido => {
+  // Filtra usando os dados que vieram do App.jsx (meusPedidos)
+  const pedidosFiltrados = meusPedidos.filter(pedido => {
     if (filtro === 'todos') return true;
     if (filtro === 'andamento') return pedido.status !== 'Entregue';
     if (filtro === 'concluidos') return pedido.status === 'Entregue';
@@ -93,7 +53,6 @@ export default function Pedidos() {
               className="px-4 py-2 rounded-sm text-sm font-medium transition-all duration-200 uppercase tracking-wider border"
               style={{
                 backgroundColor: filtro === tipo ? colors.green : 'transparent',
-                color: filtro === tipo ? '#white' : colors.green,
                 borderColor: colors.green,
                 color: filtro === tipo ? '#fff' : colors.green
               }}
@@ -179,7 +138,7 @@ export default function Pedidos() {
                         <p className="opacity-80 pl-6">{pedido.entrega}</p>
                       </div>
 
-                      {/* Linha do tempo simples / Ações adicionais */}
+                      {/* Botão de Suporte */}
                       <div className="pt-2 flex justify-end">
                         <button 
                           className="text-xs font-semibold uppercase tracking-wider px-4 py-2 border rounded-sm transition-colors"
