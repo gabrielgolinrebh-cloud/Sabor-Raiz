@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Menu, X, ShoppingBasket, User, Search } from 'lucide-react';
 
-export default function Header({ colors, setTelaAtual }) {
+// Ajuste: Adicionado 'totalItens' nas propriedades recebidas do componente Pai
+export default function Header({ colors, setTelaAtual, totalItens }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navegarPara = (tela) => {
@@ -25,7 +26,7 @@ export default function Header({ colors, setTelaAtual }) {
             </button>
           </div>
 
-          {/* Logo Textual - Ajustado para ficar menor e mais proporcional */}
+          {/* Logo Textual */}
           <div className="flex-shrink-0 flex items-center justify-center cursor-pointer select-none" onClick={() => navegarPara('home')}>
             <h1 className="font-title text-xl sm:text-2xl md:text-3xl font-semibold" style={{ color: colors.terracotta }}>
               Sabor<span style={{ color: colors.green }}>Raiz</span>
@@ -37,7 +38,6 @@ export default function Header({ colors, setTelaAtual }) {
             <button onClick={() => navegarPara('home')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Home</button>
             <button onClick={() => navegarPara('sobre')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Sobre</button>
             <button onClick={() => navegarPara('catalogo')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Catálogo</button>
-            {/* Nova página adicionada abaixo */}
             <button onClick={() => navegarPara('contatos')} className="text-sm font-medium transition-all hover:opacity-75 py-2 cursor-pointer" style={{ color: colors.green }}>Contatos</button>
           </nav>
 
@@ -45,9 +45,18 @@ export default function Header({ colors, setTelaAtual }) {
           <div className="flex items-center space-x-3 sm:space-x-4 md:space-x-6" style={{ color: colors.green }}>
             <button className="hover:opacity-70 p-1 hidden sm:block"><Search size={20} /></button>
             <button onClick={() => navegarPara('cadastro')} className="hover:opacity-70 p-1 hidden sm:block"><User size={20} /></button>
+            
+            {/* Ícone da Cesta Atualizado para renderizar a bolha com a quantidade dinâmica */}
             <button onClick={() => navegarPara('pedidos')} className="hover:opacity-70 p-1 relative flex items-center gap-1.5 focus:outline-none">
               <ShoppingBasket size={24} />
-              <span className="absolute -top-1 -right-1 text-[9px] w-4 h-4 flex items-center justify-center rounded-full text-white font-semibold" style={{ backgroundColor: colors.terracotta }}>0</span>
+              {totalItens > 0 && (
+                <span 
+                  className="absolute -top-1 -right-1 text-[9px] w-4 h-4 flex items-center justify-center rounded-full text-white font-semibold transition-all" 
+                  style={{ backgroundColor: colors.terracotta }}
+                >
+                  {totalItens}
+                </span>
+              )}
             </button>
           </div>
         </div>
@@ -60,7 +69,6 @@ export default function Header({ colors, setTelaAtual }) {
             <button onClick={() => navegarPara('home')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Home</button>
             <button onClick={() => navegarPara('sobre')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Sobre</button>
             <button onClick={() => navegarPara('catalogo')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Catálogo</button>
-            {/* Nova página adicionada no mobile abaixo */}
             <button onClick={() => navegarPara('contatos')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Contatos</button>
             <button onClick={() => navegarPara('cadastro')} className="w-full text-left block px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Minha Conta / Cadastro</button>
           </nav>
@@ -68,4 +76,4 @@ export default function Header({ colors, setTelaAtual }) {
       )}
     </header>
   );
-} 
+}

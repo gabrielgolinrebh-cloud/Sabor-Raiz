@@ -77,7 +77,6 @@ export default function Catalogo({ adicionarAoPedido }) {
         </p>
       </header>
 
-      {/* Filtros de Categoria */}
       <nav className={styles.filtros}>
         {categorias.map(cat => (
           <button
@@ -90,7 +89,6 @@ export default function Catalogo({ adicionarAoPedido }) {
         ))}
       </nav>
 
-      {/* Grid de Produtos */}
       <main className={styles.gridProdutos}>
         {produtosFiltrados.map(produto => (
           <article key={produto.id} className={styles.cardProduto}>
