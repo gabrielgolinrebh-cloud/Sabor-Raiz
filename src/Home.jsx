@@ -28,11 +28,10 @@ function AnimatedCounter({ from = 0, to, suffix = "" }) {
   return <span ref={nodeRef}>{from}{suffix}</span>;
 }
 
-// --- DADOS FAKES PARA A PÁGINA ---
 const FAKE_PRODUCTS = [
   { id: 1, name: "Cesta Manhã na Fazenda", price: "R$ 189,90", img: "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?w=500&q=80" },
   { id: 2, name: "Kit Queijos & Vinhos", price: "R$ 289,90", img: "https://images.unsplash.com/photo-1596450514735-111a2fe02935?w=500&q=80" },
-  { id: 3, name: "Afeto Regional", price: "R$ 145,00", img: "https://images.unsplash.com/photo-1608353086915-7798364c6734?w=500&q=80" }
+  { id: 3, name: "Afeto Regional", price: "R$ 145,00", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyLAWMaT64DWajGmKRcYF7sIlS7JbVGB2cj7hlOsYxnwbfximsYwh9TsI&s=10" }
 ];
 
 const FAKE_TESTIMONIALS = [
