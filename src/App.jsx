@@ -129,6 +129,10 @@ export default function App() {
           <Sobre aoVoltar={() => setTelaAtual('home')} />
         )}
 
+        {telaAtual === 'contatos' && (
+          <Contatos />
+        )}
+
         {telaAtual === 'catalogo' && (
           <Catalogo aoVoltar={() => setTelaAtual('home')} adicionarAoPedido={adicionarAoPedido} />
         )}
