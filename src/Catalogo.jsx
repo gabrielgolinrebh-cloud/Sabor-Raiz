@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Catalogo.module.css';
 
-// Dados simulados baseados no planejamento do banco de dados (img_09)
 const PRODUTOS_MOCK = [
   {
     id: 1,
@@ -53,7 +52,7 @@ const PRODUTOS_MOCK = [
   }
 ];
 
-export default function Catalogo() {
+export default function Catalogo({ adicionarAoPedido }) {
   const [categoriaAtiva, setCategoriaAtiva] = useState('todos');
 
   const categorias = [
@@ -105,7 +104,10 @@ export default function Catalogo() {
                 <span className={styles.preco}>
                   {produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                 </span>
-                <button className={styles.botaoAdicionar}>
+                <button 
+                  className={styles.botaoAdicionar}
+                  onClick={() => adicionarAoPedido(produto)}
+                >
                   Adicionar
                 </button>
               </div>
