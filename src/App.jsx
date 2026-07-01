@@ -9,6 +9,7 @@ import Catalogo from './Catalogo';
 import Pedidos from './Pedidos';
 import Contatos from './Contatos';
 
+
 export default function App() {
   // Estado atualizado para aceitar 'contatos' também
   const [telaAtual, setTelaAtual] = useState('home'); 
