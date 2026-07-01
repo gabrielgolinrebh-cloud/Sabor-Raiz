@@ -7,6 +7,7 @@ import Home from './Home';
 import Sobre from './Sobre';
 import Catalogo from './Catalogo';
 import Pedidos from './Pedidos';
+import Contatos from './Contatos';
 
 export default function App() {
   // Estado atualizado para aceitar 'contatos' também
