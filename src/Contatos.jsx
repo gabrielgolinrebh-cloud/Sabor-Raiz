@@ -3,13 +3,13 @@ import style from './Contatos.module.css';
 
 function Contatos () {
     return (
-        <main className="contato">
+        <main className={style["contato"]}>
 
 
 
 
             {/*Hora do Cabeçalho*/}
-            <section className="contato-header">
+            <section className={style["contato-header"]}>
 
                 <h1>Contate-nos</h1>
 
@@ -24,12 +24,12 @@ function Contatos () {
 
 
             {/*Hora do Conteúdo*/}
-            <section className="contato-conteudo">
+            <section className={style["contato-conteudo"]}>
 
 
 
                 {/* Hora das Informações */}
-                <div className="contato-info">
+                <div className={style["contato-info"]}>
 
 
                     <h2>Entre em Contato</h2>
@@ -63,7 +63,7 @@ function Contatos () {
 
 
                 {/* Hora do Formulário */}
-                <div className="contato-formulario">
+                <div className={style["contato-formulario"]}>
 
                     <form>
 
