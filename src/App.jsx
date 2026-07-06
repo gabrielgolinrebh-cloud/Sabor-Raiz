@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MapPin, Clock, Truck, CheckCircle2 } from 'lucide-react';
+import { MapPin, Clock, Truck, CheckCircle2, Leaf } from 'lucide-react';
+import { FaInstagram, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import Cadastro from './Cadastro';
 import Login from './Login';
 import Header from './header'; 
@@ -141,6 +142,121 @@ export default function App() {
           <Pedidos meusPedidos={meusPedidos} aoVoltar={() => setTelaAtual('home')} />
         )}
       </main>
+
+      <footer className="mt-auto border-t" style={{ backgroundColor: colors.cream, color: colors.green, borderColor: `${colors.gold}40` }}>
+        <div className="max-w-7xl mx-auto px-4 pt-16 pb-6 sm:px-6 lg:px-8 w-full relative">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            
+            {/* Coluna 1: Logo e Texto */}
+            <div className="flex flex-col space-y-4">
+              <div className="text-left">
+                <h2 className="font-title text-4xl m-0 tracking-tight" style={{ color: colors.green }}>
+                  Sabor<span style={{ color: colors.terracotta }}>Raiz</span>
+                </h2>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="h-px w-8" style={{ backgroundColor: colors.gold }}></span>
+                  <span className="uppercase tracking-[0.3em] text-sm font-semibold" style={{ color: colors.green }}>Cestas</span>
+                  <span className="h-px w-8" style={{ backgroundColor: colors.gold }}></span>
+                </div>
+              </div>
+              <p className="text-sm mt-4 max-w-xs leading-relaxed opacity-90 font-medium">
+                Cestas especiais com produtos regionais e muito amor para todos os momentos.
+              </p>
+            </div>
+
+            {/* Coluna 2: Links Rápidos */}
+            <div className="text-left">
+              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
+                Links Rápidos
+              </h4>
+              <ul className="space-y-3 text-sm font-medium opacity-90">
+                {[
+                  { label: 'Início', acao: 'home' },
+                  { label: 'Sobre Nós', acao: 'sobre' },
+                  { label: 'Nossas Cestas', acao: 'catalogo' },
+                  { label: 'Produtos', acao: 'produtos' },
+                  { label: 'Empresariais', acao: 'empresariais' },
+                  { label: 'Contato', acao: 'contatos' }
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <Leaf size={14} style={{ color: colors.gold }} className="flex-shrink-0" />
+                    <button 
+                      onClick={() => setTelaAtual(item.acao)} 
+                      className="bg-transparent border-none cursor-pointer transition-colors hover:font-bold p-0 m-0 text-left"
+                      style={{ color: colors.green }}
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Coluna 3: Informações */}
+            <div className="text-left">
+              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
+                Informações
+              </h4>
+              <ul className="space-y-3 text-sm font-medium opacity-90">
+                {[
+                  'Sobre Entregas',
+                  'Formas de Pagamento',
+                  'Trocas e Devoluções',
+                  'Perguntas Frequentes',
+                  'Política de Privacidade'
+                ].map((item, index) => (
+                  <li key={index}>
+                    <button 
+                      className="bg-transparent border-none cursor-pointer transition-colors hover:font-bold p-0 m-0 text-left"
+                      style={{ color: colors.green }}
+                    >
+                      {item}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Coluna 4: Redes Sociais e Imagem */}
+            <div className="text-left relative flex flex-col items-start">
+              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
+                Siga-nos
+              </h4>
+              <div className="flex gap-3 mb-6 relative z-10">
+                {[
+                  { icon: <FaInstagram size={18} />, link: "#" },
+                  { icon: <FaFacebookF size={18} />, link: "#" },
+                  { icon: <FaLinkedinIn size={18} />, link: "#" }
+                ].map((social, index) => (
+                  <a 
+                    key={index} 
+                    href={social.link} 
+                    className="w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                    style={{ borderColor: colors.green, color: colors.green }}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+              
+              <div className="absolute right-0 -bottom-8 w-48 sm:w-56 lg:w-64 opacity-90 pointer-events-none">
+                <img 
+                  src="https://cdn.pixabay.com/photo/2021/11/14/14/09/basket-6794692_1280.png" 
+                  alt="Ilustração de Cesta SaborRaiz" 
+                  className="w-full h-auto drop-shadow-md"
+                />
+              </div>
+            </div>
+            
+          </div>
+
+          <div className="pt-6 border-t flex flex-col text-center text-xs sm:text-sm font-medium opacity-80" style={{ borderColor: `${colors.gold}40` }}>
+            <p>&copy; {new Date().getFullYear()} Sabor Raiz Cestas. Todos os direitos reservados.</p>
+          </div>
+          
+        </div>
+      </footer>
     </div>
   );
 }
