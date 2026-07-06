@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ShoppingBasket, Leaf, Heart, ShieldCheck, Truck, Star, Quote, Award, Users } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import fundoGeral from '../docs/imagens/fundogeral.jpg';
 import styles from './Home.module.css';
 
 // --- NOVO: COMPONENTE DO CONTADOR ANIMADO ---
@@ -64,8 +65,8 @@ export default function Home({ colors, setTelaAtual }) {
       {/* HERO SECTION */}
       <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1592663527359-cf6642f54cff?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Cesta de produtos regionais" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/50"></div>
+          <img src={fundoGeral} alt="Cesta de produtos regionais" className="w-full h-full object-cover object-bottom" />
+          <div className="absolute inset-0 bg-black/65"></div>
         </div>
         
         <motion.div 
