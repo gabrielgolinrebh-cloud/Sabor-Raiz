@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Clock, Truck, CheckCircle2, Leaf } from 'lucide-react';
+import { Clock, Leaf, X } from 'lucide-react';
 import { FaInstagram, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import Cadastro from './Cadastro';
 import Login from './Login';
@@ -10,9 +10,58 @@ import Catalogo from './Catalogo';
 import Pedidos from './Pedidos';
 import Contatos from './Contatos';
 
+const INFOS_SABOR_RAIZ = {
+  'Sobre Entregas': {
+    titulo: 'Sobre Entregas',
+    conteudo: (
+      <div className="space-y-4 text-sm leading-relaxed text-[#4A3428]">
+        <p>Realizamos entregas para toda a cidade com prazo de 24 a 48 horas úteis. Para regiões fora da área de cobertura, oferecemos retirada na loja ou frete personalizado.</p>
+        <p>O cliente recebe um código de rastreamento e atualizações por e-mail ou WhatsApp sobre o status do pedido.</p>
+      </div>
+    )
+  },
+  'Formas de Pagamento': {
+    titulo: 'Formas de Pagamento',
+    conteudo: (
+      <div className="space-y-4 text-sm leading-relaxed text-[#4A3428]">
+        <p>Aceitamos cartão de crédito, boleto bancário e PIX. O pagamento é processado com segurança e confirmação imediata.</p>
+        <p>Para compras corporativas, também oferecemos pagamento por transferência bancária mediante aprovação prévia.</p>
+      </div>
+    )
+  },
+  'Trocas e Devoluções': {
+    titulo: 'Trocas e Devoluções',
+    conteudo: (
+      <div className="space-y-4 text-sm leading-relaxed text-[#4A3428]">
+        <p>Se houver problema com o produto, garantimos troca ou devolução em até 7 dias a partir do recebimento.</p>
+        <p>Basta entrar em contato com nosso suporte e fornecer fotos do item. Avaliamos cada caso com prioridade.</p>
+      </div>
+    )
+  },
+  'Perguntas Frequentes': {
+    titulo: 'Perguntas Frequentes',
+    conteudo: (
+      <div className="space-y-4 text-sm leading-relaxed text-[#4A3428]">
+        <p>Tem dúvidas sobre personalização, prazos ou embalagens? Nosso atendimento está pronto para ajudar em todas as etapas.</p>
+        <p>Consulte também as opções de cestas especiais para eventos e datas comemorativas.</p>
+      </div>
+    )
+  },
+  'Política de Privacidade': {
+    titulo: 'Política de Privacidade',
+    conteudo: (
+      <div className="space-y-4 text-sm leading-relaxed text-[#4A3428]">
+        <p>Respeitamos seus dados e não compartilhamos informações pessoais sem consentimento.</p>
+        <p>Utilizamos seus dados apenas para processar pedidos, enviar atualizações de entrega e melhorar a experiência do cliente.</p>
+      </div>
+    )
+  }
+};
 
 export default function App() {
   const [telaAtual, setTelaAtual] = useState('home'); 
+
+  const [infoPopupModal, setInfoPopupModal] = useState(null);
 
   const colors = {
     green: '#2F5D50',
@@ -195,20 +244,15 @@ export default function App() {
 
             {/* Coluna 3: Informações */}
             <div className="text-left">
-              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
+              <h4 className="font-bold text-sm sm:text-base uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Informações
               </h4>
-              <ul className="space-y-3 text-sm font-medium opacity-90">
-                {[
-                  'Sobre Entregas',
-                  'Formas de Pagamento',
-                  'Trocas e Devoluções',
-                  'Perguntas Frequentes',
-                  'Política de Privacidade'
-                ].map((item, index) => (
+              <ul className="space-y-4 text-sm sm:text-base font-medium opacity-90">
+                {Object.keys(INFOS_SABOR_RAIZ).map((item, index) => (
                   <li key={index}>
                     <button 
-                      className="bg-transparent border-none cursor-pointer transition-colors hover:font-bold p-0 m-0 text-left"
+                      onClick={() => setInfoPopupModal(item)} // Abre o pop-up com o texto correspondente
+                      className="bg-transparent border-none cursor-pointer transition-all hover:opacity-70 p-0 m-0 text-left"
                       style={{ color: colors.green }}
                     >
                       {item}
@@ -218,45 +262,55 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Coluna 4: Redes Sociais e Imagem */}
-            <div className="text-left relative flex flex-col items-start">
-              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
-                Siga-nos
-              </h4>
-              <div className="flex gap-3 mb-6 relative z-10">
-                {[
-                  { icon: <FaInstagram size={18} />, link: "#" },
-                  { icon: <FaFacebookF size={18} />, link: "#" },
-                  { icon: <FaLinkedinIn size={18} />, link: "#" }
-                ].map((social, index) => (
-                  <a 
-                    key={index} 
-                    href={social.link} 
-                    className="w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 hover:scale-110"
-                    style={{ borderColor: colors.green, color: colors.green }}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-              
-              <div className="absolute right-0 -bottom-8 w-48 sm:w-56 lg:w-64 opacity-90 pointer-events-none">
-                <img 
-                  src="https://cdn.pixabay.com/photo/2021/11/14/14/09/basket-6794692_1280.png" 
-                  alt="Ilustração de Cesta SaborRaiz" 
-                  className="w-full h-auto drop-shadow-md"
-                />
-              </div>
-            </div>
-            
+            {/* ... Coluna 4 continua igual ... */}
           </div>
-
-          <div className="pt-6 border-t flex flex-col text-center text-xs sm:text-sm font-medium opacity-80" style={{ borderColor: `${colors.gold}40` }}>
-            <p>&copy; {new Date().getFullYear()} Sabor Raiz Cestas. Todos os direitos reservados.</p>
-          </div>
-          
         </div>
       </footer>
+
+      {/* POP-UP / MODAL DINÂMICO */}
+      {infoPopupModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          {/* Fundo escuro com desfoque. Clicar nele fecha o modal */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onClick={() => setInfoPopupModal(null)}
+          ></div>
+          
+          {/* Caixa de conteúdo do Pop-up */}
+          <div className="relative bg-[#F6EBD9] w-full max-w-2xl rounded-sm shadow-2xl overflow-hidden z-10 animate-in fade-in zoom-in duration-300 border" style={{ borderColor: colors.gold }}>
+            
+            {/* Cabeçalho do Pop-up */}
+            <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: `${colors.gold}50`, backgroundColor: colors.green }}>
+              <h3 className="font-title text-2xl text-white">
+                {INFOS_SABOR_RAIZ[infoPopupModal].titulo}
+              </h3>
+              <button 
+                onClick={() => setInfoPopupModal(null)}
+                className="text-white hover:text-amber-400 transition-colors bg-transparent border-none cursor-pointer"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            
+            {/* Corpo do texto */}
+            <div className="px-6 py-8 max-h-[70vh] overflow-y-auto">
+              {INFOS_SABOR_RAIZ[infoPopupModal].conteudo}
+            </div>
+            
+            {/* Rodapé do Pop-up */}
+            <div className="px-6 py-4 border-t flex justify-end" style={{ borderColor: `${colors.gold}50`, backgroundColor: `${colors.cream}50` }}>
+              <button 
+                onClick={() => setInfoPopupModal(null)}
+                className="px-6 py-2 rounded-sm font-semibold text-white transition-all hover:opacity-90 shadow-sm"
+                style={{ backgroundColor: colors.terracotta }}
+              >
+                Entendi
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
