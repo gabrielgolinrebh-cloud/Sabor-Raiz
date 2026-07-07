@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { ShoppingBasket, Leaf, Heart, ShieldCheck, Truck, Star, Quote, Award, Users } from 'lucide-react';
+import { ShoppingBasket, Heart, ShieldCheck, Truck, Star, Quote, Award, Users } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import fundoGeral from '../docs/imagens/fundogeral.jpg';
+import logoSaborRaiz from '../docs/imagens/logosaborraiz.png';
 import styles from './Home.module.css';
-
+import imageCesta from '../docs/imagens/cestahome.png';
 // --- NOVO: COMPONENTE DO CONTADOR ANIMADO ---
 function AnimatedCounter({ from = 0, to, suffix = "" }) {
   const nodeRef = React.useRef(null);
@@ -73,7 +74,7 @@ export default function Home({ colors, setTelaAtual }) {
           initial="hidden" animate="visible" variants={fadeUp}
           className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center"
         >
-          <Leaf className="mb-4" size={40} style={{ color: colors.gold }} />
+          <img src={logoSaborRaiz} alt="Logo Sabor Raiz" className="mb-2 w-24 h-auto mx-auto" />
           <h2 className={`font-title text-4xl sm:text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-lg ${styles['font-title']}`}>
             Sabores que contam histórias.
           </h2>
@@ -126,11 +127,8 @@ export default function Home({ colors, setTelaAtual }) {
             initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
             className="w-full md:w-1/2 relative px-4"
           >
-            <div className={`p-2 ${styles['border-ornament']}`}>
-              <img src="https://images.unsplash.com/photo-1614088636750-0a25692634e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Produtos artesanais SaborRaiz" className="w-full h-auto object-cover rounded-sm" />
-            </div>
-            <div className={`absolute -bottom-6 -right-2 w-24 h-24 rounded-full flex items-center justify-center shadow-2xl z-10 ${styles['floating-badge']}`} style={{ backgroundColor: colors.green }}>
-              <span className={`text-white text-3xl italic ${styles['font-title']}`}>SR</span>
+            <div>
+            <img src={imageCesta} alt="Cesta de produtos regionais"/>
             </div>
           </motion.div>
 
