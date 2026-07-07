@@ -90,14 +90,8 @@ function Contatos() {
           ou converse com nossa equipe.
         </motion.p>
 
-        <motion.img
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: .8 }}
-          src={enfeiteTitulo2}
-          alt="Enfeite"
-          className={style["enfeite-titulo2"]}
-        />
+        <br /> <br />
+        
 
       </section>
 
@@ -152,8 +146,10 @@ function Contatos() {
                 <p>(11) 99999-9999</p>
 
                 <a
-                  href="#"
-                  className={style["btn-whatsapp"]}
+                    href="https://wa.me/5511987654321?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20cestas%20da%20sua%20loja."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={style["btn-whatsapp"]}
                 >
                   <FaWhatsapp />
                   Conversar no WhatsApp
@@ -212,15 +208,15 @@ function Contatos() {
 
               <div className={style["redes-sociais"]}>
 
-                <a href="#" className={style["wrapper-social"]}>
+                <a href="https://www.instagram.com/sabor.raizoficial/" className={style["wrapper-social"]}>
                   <FaInstagram />
                 </a>
 
-                <a href="#" className={style["wrapper-social"]}>
+                <a href="https://www.facebook.com/p/Sabor-Raiz-61560768295582/?locale=pt_BR" className={style["wrapper-social"]}>
                   <FaFacebookF />
                 </a>
 
-                <a href="#" className={style["wrapper-social"]}>
+                <a href="https://www.linkedin.com/company/restaurante-e-pir%C3%A3o-de-aipim-sabor-raiz/about/" className={style["wrapper-social"]}>
                   <FaLinkedinIn />
                 </a>
 
@@ -295,6 +291,10 @@ function Contatos() {
 
               <option value="sugestoes">
                 Sugestões
+              </option>
+
+              <option value="outros">
+                Outros
               </option>
 
             </select>
