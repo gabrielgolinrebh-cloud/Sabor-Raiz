@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { MapPin, Clock, Truck, CheckCircle2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Clock, Leaf, X } from 'lucide-react';
+import { FaInstagram, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import Cadastro from './Cadastro';
 import Login from './Login';
 import Header from './header';
@@ -8,10 +9,29 @@ import Sobre from './Sobre';
 import Catalogo from './Catalogo';
 import Pedidos from './Pedidos';
 import Contatos from './Contatos';
+import AreaAdmin from './AreaAdmin';
+import { adicionarAoCarrinho, listarCarrinho } from './services/api';
 
+const INFOS_SABOR_RAIZ = {
+  'Entrega': {
+    titulo: 'Entrega',
+    conteudo: 'Oferecemos entrega em toda a região com agendamento prévio e cuidado especial nas cestas.',
+  },
+  'Pagamento': {
+    titulo: 'Pagamento',
+    conteudo: 'Aceitamos pagamento por pix, cartão e transferência para facilitar a sua compra.',
+  },
+  'Horários': {
+    titulo: 'Horários',
+    conteudo: 'Atendemos de segunda a sábado, com produção e retirada organizada conforme a demanda.',
+  },
+};
 
 export default function App() {
-  const [telaAtual, setTelaAtual] = useState('home'); 
+  const [telaAtual, setTelaAtual] = useState('home');
+  const [usuario, setUsuario] = useState(null);
+  const [meusPedidos, setMeusPedidos] = useState([]);
+  const [infoPopupModal, setInfoPopupModal] = useState(null);
 
   const colors = {
     green: '#2F5D50',
@@ -159,7 +179,7 @@ export default function App() {
         )}
 
         {telaAtual === 'sobre' && (
-          <Sobre aoVoltar={() => setTelaAtual('home')} />
+          <Sobre aoVoltar={setTelaAtual} />
         )}
 
         {telaAtual === 'contatos' && (
@@ -184,7 +204,6 @@ export default function App() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
             
-            {/* Coluna 1: Logo e Texto */}
             <div className="flex flex-col space-y-4">
               <div className="text-left">
                 <h2 className="font-title text-4xl m-0 tracking-tight" style={{ color: colors.green }}>
@@ -201,7 +220,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Coluna 2: Links Rápidos */}
             <div className="text-left">
               <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Links Rápidos
@@ -229,7 +247,6 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Coluna 3: Informações */}
             <div className="text-left">
               <h4 className="font-bold text-sm sm:text-base uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Informações
@@ -249,7 +266,6 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Coluna 4: Redes Sociais e Imagem */}
             <div className="text-left relative flex flex-col items-start">
               <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Siga-nos
