@@ -63,6 +63,11 @@ export default function App() {
     }
   };
 
+<<<<<<< HEAD
+  // Função para adicionar produto agrupando por quantidade se já existir
+  const adicionarAoPedido = (produto) => {
+    setMeusPedidos(pedidosAtuais => {
+=======
   useEffect(() => {
     if (usuario?.id) {
       carregarCarrinho(usuario.id);
@@ -89,6 +94,7 @@ export default function App() {
     }
 
     setMeusPedidos((pedidosAtuais) => {
+>>>>>>> 97e05c492cdf12b512e0ab9890fb1b6f15149dd3
       const pedidoExistenteIndex = pedidosAtuais.findIndex(
         (p) => p.status === 'Em preparação' && p.items.some((item) => item.nome === produto.nome)
       );
@@ -104,9 +110,31 @@ export default function App() {
           return item;
         });
 
+<<<<<<< HEAD
+        pedido.total = pedido.items.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
+        novosPedidos[pedidoExistenteIndex] = pedido;
+        return novosPedidos;
+      } else {
+        const novoPedido = {
+          id: `#SR-${Math.floor(Math.random() * 9000) + 1000}`,
+          data: new Date().toLocaleDateString('pt-BR'),
+          status: "Em preparação",
+          statusIcon: Clock,
+          statusColor: colors.terracotta,
+          total: produto.preco,
+          imagemPrincipal: produto.imagem,
+          nomePrincipal: produto.nome,
+          items: [
+            { nome: produto.nome, qtd: 1, preco: produto.preco }
+          ],
+          entrega: "Endereço cadastrado na conta do usuário"
+        };
+        return [novoPedido, ...pedidosAtuais];
+=======
         pedido.total = pedido.items.reduce((acc, item) => acc + item.preco * item.qtd, 0);
         novosPedidos[pedidoExistenteIndex] = pedido;
         return novosPedidos;
+>>>>>>> 97e05c492cdf12b512e0ab9890fb1b6f15149dd3
       }
 
       const novoPedido = {
@@ -165,7 +193,11 @@ export default function App() {
         `}
       </style>
 
+<<<<<<< HEAD
+      <Header colors={colors} setTelaAtual={setTelaAtual} totalItens={totalItensCesta} />
+=======
       <Header colors={colors} setTelaAtual={setTelaAtual} totalItens={totalItensCesta} usuario={usuario} onSair={handleSair} />
+>>>>>>> 97e05c492cdf12b512e0ab9890fb1b6f15149dd3
 
       <main className="flex-grow">
         {telaAtual === 'home' && <Home colors={colors} setTelaAtual={setTelaAtual} />}
@@ -179,7 +211,7 @@ export default function App() {
         )}
 
         {telaAtual === 'sobre' && (
-          <Sobre aoVoltar={() => setTelaAtual('home')} />
+          <Sobre aoVoltar={setTelaAtual} />
         )}
 
         {telaAtual === 'contatos' && (
@@ -204,7 +236,6 @@ export default function App() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
             
-            {/* Coluna 1: Logo e Texto */}
             <div className="flex flex-col space-y-4">
               <div className="text-left">
                 <h2 className="font-title text-4xl m-0 tracking-tight" style={{ color: colors.green }}>
@@ -221,7 +252,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Coluna 2: Links Rápidos */}
             <div className="text-left">
               <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Links Rápidos
@@ -249,7 +279,6 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Coluna 3: Informações */}
             <div className="text-left">
               <h4 className="font-bold text-sm sm:text-base uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Informações
@@ -269,7 +298,6 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Coluna 4: Redes Sociais e Imagem */}
             <div className="text-left relative flex flex-col items-start">
               <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Siga-nos
