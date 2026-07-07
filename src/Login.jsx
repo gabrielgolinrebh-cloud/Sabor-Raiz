@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { X, ArrowRight, Leaf, Lock, Mail } from 'lucide-react';
 import styles from './Login.module.css';
+import { loginUsuario } from './services/api';
 
-export default function Login({ aoVoltar, aoMudarParaCadastro }) {
+export default function Login({ aoVoltar, aoMudarParaCadastro, aoLogar }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [erro, setErro] = useState('');
 
   const colors = {
     green: '#2F5D50',
@@ -14,9 +16,19 @@ export default function Login({ aoVoltar, aoMudarParaCadastro }) {
     brown: '#4A3428',
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Tentativa de login:', { email, senha });
+    setErro('');
+
+    try {
+      const resposta = await loginUsuario({ email, senha });
+      if (resposta.success && aoLogar) {
+        aoLogar(resposta.user);
+        aoVoltar();
+      }
+    } catch (error) {
+      setErro(error.message);
+    }
   };
 
   return (
@@ -66,6 +78,8 @@ export default function Login({ aoVoltar, aoMudarParaCadastro }) {
               />
             </div>
           </div>
+
+          {erro && <p style={{ color: colors.terracotta, fontSize: '0.95rem' }}>{erro}</p>}
 
           <button type="submit" className={styles.botaoEnviar} style={{ backgroundColor: colors.terracotta }}>
             Entrar <ArrowRight size={18} />

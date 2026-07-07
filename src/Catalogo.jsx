@@ -1,59 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Catalogo.module.css';
-
-const PRODUTOS_MOCK = [
-  {
-    id: 1,
-    nome: "Cesta Café Regional Premium",
-    categoria: "cestas",
-    preco: 189.90,
-    descricao: "Café artesanal torrado, queijo meia cura, geleia de frutas vermelhas e biscoitos caseiros.",
-    imagem: "https://images.unsplash.com/photo-1544982503-9f984c14501a?auto=format&fit=crop&q=80&w=400"
-  },    
-  {
-    id: 2,
-    nome: "Queijo Artesanal Canastra",
-    categoria: "produtos",
-    preco: 64.90,
-    descricao: "Queijo maturado de produção local, com sabor marcante e textura macia.",
-    imagem: "https://images.unsplash.com/photo-1486297678162-ad2a14b34897?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 3,
-    nome: "Mel de Flores Silvestres",
-    categoria: "produtos",
-    preco: 32.00,
-    descricao: "Mel 100% puro e orgânico, colhido de forma sustentável por pequenos produtores.",
-    imagem: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 4,
-    nome: "Cesta Afeto e Tradição",
-    categoria: "cestas",
-    preco: 245.00,
-    descricao: "Perfeita para presentes: mix de doces artesanais, vinhos da região e castanhas selecionadas.",
-    imagem: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 5,
-    nome: "Doce de Leite na Palha",
-    categoria: "produtos",
-    preco: 18.50,
-    descricao: "Doce de leite tradicional cremoso, receita secular com menos açúcar.",
-    imagem: "https://images.unsplash.com/photo-1548848221-0c2e497ed557?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 6,
-    nome: "Cesta Personalizada Celebração",
-    categoria: "cestas_personalizadas",
-    preco: 310.00,
-    descricao: "Monte com os itens favoritos do cliente. Inclui embalagem especial em vime.",
-    imagem: "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=400"
-  }
-];
+import { listarProdutos } from './services/api';
 
 export default function Catalogo({ adicionarAoPedido }) {
   const [categoriaAtiva, setCategoriaAtiva] = useState('todos');
+  const [produtos, setProdutos] = useState([]);
 
   const categorias = [
     { id: 'todos', nome: 'Todos os Produtos' },
@@ -62,9 +13,22 @@ export default function Catalogo({ adicionarAoPedido }) {
     { id: 'cestas_personalizadas', nome: 'Cestas Personalizadas' }
   ];
 
-  const produtosFiltrados = categoriaAtiva === 'todos' 
-    ? PRODUTOS_MOCK 
-    : PRODUTOS_MOCK.filter(p => p.categoria === categoriaAtiva);
+  useEffect(() => {
+    async function carregarProdutos() {
+      try {
+        const dados = await listarProdutos();
+        setProdutos(dados);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    carregarProdutos();
+  }, []);
+
+  const produtosFiltrados = categoriaAtiva === 'todos'
+    ? produtos
+    : produtos.filter((p) => p.categoria === categoriaAtiva);
 
   return (
     <div className={styles.catalogoContainer}>

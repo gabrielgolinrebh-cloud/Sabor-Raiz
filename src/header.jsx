@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, ShoppingBasket, User, Search } from 'lucide-react';
+import { Menu, X, ShoppingBasket, User, Search, ShieldCheck } from 'lucide-react';
 
-// Ajuste: Adicionado 'totalItens' nas propriedades recebidas do componente Pai
-export default function Header({ colors, setTelaAtual, totalItens }) {
+export default function Header({ colors, setTelaAtual, totalItens, usuario, onSair }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navegarPara = (tela) => {
@@ -44,9 +43,18 @@ export default function Header({ colors, setTelaAtual, totalItens }) {
           {/* Icons */}
           <div className="flex items-center space-x-3 sm:space-x-4 md:space-x-6" style={{ color: colors.green }}>
             <button className="hover:opacity-70 p-1 hidden sm:block"><Search size={20} /></button>
-            <button onClick={() => navegarPara('cadastro')} className="hover:opacity-70 p-1 hidden sm:block"><User size={20} /></button>
+            {usuario?.role === 'admin' && (
+              <button onClick={() => navegarPara('admin')} className="hover:opacity-70 p-1 hidden sm:block" title="Admin">
+                <ShieldCheck size={20} />
+              </button>
+            )}
+            <button onClick={() => navegarPara(usuario ? 'home' : 'cadastro')} className="hover:opacity-70 p-1 hidden sm:block"><User size={20} /></button>
+            {usuario && (
+              <button onClick={onSair} className="text-sm font-medium hidden sm:block" style={{ color: colors.terracotta }}>
+                Sair
+              </button>
+            )}
             
-            {/* Ícone da Cesta Atualizado para renderizar a bolha com a quantidade dinâmica */}
             <button onClick={() => navegarPara('pedidos')} className="hover:opacity-70 p-1 relative flex items-center gap-1.5 focus:outline-none">
               <ShoppingBasket size={24} />
               {totalItens > 0 && (
@@ -70,7 +78,13 @@ export default function Header({ colors, setTelaAtual, totalItens }) {
             <button onClick={() => navegarPara('sobre')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Sobre</button>
             <button onClick={() => navegarPara('catalogo')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Catálogo</button>
             <button onClick={() => navegarPara('contatos')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Contatos</button>
-            <button onClick={() => navegarPara('cadastro')} className="w-full text-left block px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Minha Conta / Cadastro</button>
+            <button onClick={() => navegarPara(usuario ? 'home' : 'cadastro')} className="w-full text-left block px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>{usuario ? 'Minha Conta' : 'Minha Conta / Cadastro'}</button>
+            {usuario?.role === 'admin' && (
+              <button onClick={() => navegarPara('admin')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Admin</button>
+            )}
+            {usuario && (
+              <button onClick={onSair} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.terracotta }}>Sair</button>
+            )}
           </nav>
         </div>
       )}

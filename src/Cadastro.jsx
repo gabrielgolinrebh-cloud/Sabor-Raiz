@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { X, ArrowRight, Leaf, User, Mail, Lock } from 'lucide-react';
 import styles from './Cadastro.module.css';
+import { registrarUsuario } from './services/api';
 
-export default function Cadastro({ aoVoltar, aoMudarParaLogin }) {
+export default function Cadastro({ aoVoltar, aoMudarParaLogin, aoCadastrar }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [erro, setErro] = useState('');
+  const [sucesso, setSucesso] = useState('');
 
   const colors = {
     green: '#2F5D50',
@@ -15,9 +18,25 @@ export default function Cadastro({ aoVoltar, aoMudarParaLogin }) {
     brown: '#4A3428',
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Cadastro enviado:', { nome, email, senha });
+    setErro('');
+    setSucesso('');
+
+    try {
+      const resposta = await registrarUsuario({ nome, email, senha });
+      if (resposta.success) {
+        setSucesso('Cadastro realizado com sucesso!');
+        if (aoCadastrar) {
+          aoCadastrar(resposta.user);
+        }
+        if (aoVoltar) {
+          aoVoltar();
+        }
+      }
+    } catch (error) {
+      setErro(error.message);
+    }
   };
 
   return (
@@ -83,6 +102,9 @@ export default function Cadastro({ aoVoltar, aoMudarParaLogin }) {
               />
             </div>
           </div>
+
+          {erro && <p style={{ color: colors.terracotta, fontSize: '0.95rem' }}>{erro}</p>}
+          {sucesso && <p style={{ color: colors.green, fontSize: '0.95rem' }}>{sucesso}</p>}
 
           <button type="submit" className={styles.botaoEnviar} style={{ backgroundColor: colors.terracotta }}>
             Cadastrar <ArrowRight size={18} />
