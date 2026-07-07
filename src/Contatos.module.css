@@ -1,221 +1,502 @@
-/* Geral */
-.contato {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px 20px;
-    background-color: #fcf6ee;
-    font-family: 'Arial', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* geral*/
+
+.contato{
+    width:100%;
+    min-height:100vh;
+    padding:80px 20px 100px;
+    background:#FCF6EE;
+    font-family:'Montserrat',sans-serif;
 }
 
-/* Cabeçalho */
-.contato-header {
-    text-align: center;
-    max-width: 700px;
-    margin-bottom: 60px;
+.contato *{
+    box-sizing:border-box;
 }
 
-.contato-header h1 {
-    font-size: 56px;
-    color: #1b3d2b;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+
+.contato-header{
+    max-width:900px;
+    margin:0 auto 90px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
 }
 
-.contato-header p {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.6;
+.enfeite-titulo1{
+    width:170px;
+    margin-bottom:18px;
 }
 
-/* Estrutura das duas colunas */
-.contato-conteudo {
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 80px;
+.enfeite-titulo2{
+    width:180px;
+    margin-top:18px;
 }
 
-/* Coluna da Esquerda (Informações) */
-.contato-info {
-    width: 320px;
+.subtitulo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:#B96A43;
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-weight:700;
+    font-size:.82rem;
+    margin-bottom:20px;
 }
 
-.contato-info h2 {
-    text-align: center;
-    font-size: 22px;
-    color: #1b3d2b;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
+.subtitulo::before,
+.subtitulo::after{
+    content:"";
+    width:45px;
+    height:1px;
+    background:#D1A054;
 }
 
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 0;
+.contato-header h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:4.5rem;
+    line-height:1;
+    color:#183C2B;
+    font-weight:700;
+    margin-bottom:22px;
 }
 
-/* Centralização perfeita dos ícones nos círculos */
-.container-icone {
-    width: 54px;
-    height: 54px;
-    border: 1px solid #c9a063;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
+.contato-header p{
+    font-size:1.15rem;
+    color:#5B5048;
+    line-height:1.8;
+    max-width:650px;
 }
 
-.icone {
-    font-size: 20px;
-    color: #1b3d2b;
+/* Conteúdo */
+
+.contato-conteudo{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:60px;
+    align-items:start;
 }
 
-.info-texto h3 {
-    margin: 0 0 6px 0;
-    color: #1b3d2b;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
+
+
+.info-card,
+.formulario{
+    background:#fff;
+    border:1px solid #D1A054;
+    padding:45px;
+    position:relative;
+    transition:.45s;
 }
 
-.info-texto p {
-    margin: 2px 0;
-    color: #444;
-    font-size: 14px;
-    line-height: 1.4;
+.info-card:hover,
+.formulario:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 35px rgba(74,52,40,.12);
 }
 
-/* Botão Verde Conversar no WhatsApp */
-.btn-whatsapp {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #0b5033;
-    color: white;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 8px;
-    transition: background 0.3s;
+.info-card::before,
+.info-card::after,
+.formulario::before,
+.formulario::after{
+    content:"❖";
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    color:#D1A054;
+    background:#fff;
+    padding:0 5px;
+    font-size:14px;
 }
 
-.btn-whatsapp:hover {
-    background-color: #073622;
+.info-card::before,
+.formulario::before{
+    top:-11px;
 }
 
-/* Redes Sociais */
-.titulo-redes {
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    color: #1b3d2b;
-    font-size: 18px;
+.info-card::after,
+.formulario::after{
+    bottom:-11px;
 }
 
-.redes-sociais {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+/*titulos e mais*/
+
+.titulo-area{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:35px;
 }
 
-.wrapper-social {
-    width: 44px;
-    height: 44px;
-    border: 1px solid #1b3d2b;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #1b3d2b;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.3s;
+.titulo-area span{
+    width:45px;
+    height:2px;
+    background:#D1A054;
 }
 
-.wrapper-social:hover {
-    background: #1b3d2b;
-    color: white;
+.titulo-area h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2.1rem;
+    color:#183C2B;
+    font-weight:700;
 }
 
-/* Coluna da Direita (Formulário) */
-.contato-formulario {
-    flex: 1;
+/* Informações*/
+
+.info-item{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    padding:22px 0;
+    border-bottom:1px solid rgba(209,160,84,.20);
 }
 
-.contato-formulario form {
-    background: #fffcf9;
-    padding: 40px;
-    border-radius: 15px;
-    border: 1px solid #f3e9dc;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+.info-item:last-child{
+    border-bottom:none;
 }
 
-.contato-formulario label {
-    font-weight: 700;
-    font-size: 12px;
-    color: #000000; /* Cor vermelha/laranja escura das labels */
-    display: block;
-    margin-bottom: 8px;
+.container-icone{
+    width:58px;
+    height:58px;
+    border:1px solid #D1A054;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-shrink:0;
+    transition:.35s;
 }
 
-.contato-formulario input, 
-.contato-formulario select, 
-.contato-formulario textarea {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 24px;
-    border: 1px solid #e2d6c5;
-    border-radius: 8px; 
-    outline: none;
-    background-color: transparent;
-    font-size: 14px;
-    color: #333;
+.info-item:hover .container-icone{
+    background:#183C2B;
+    border-color:#183C2B;
 }
 
-.contato-formulario input::placeholder,
-.contato-formulario textarea::placeholder {
-    color: #a39788;
+.icone{
+    color:#183C2B;
+    font-size:20px;
+    transition:.35s;
 }
 
-/* Botão Enviar Marrom */
-.contato-formulario button {
-    width: 100%;
-    padding: 16px;
-    background: #c38442;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.3s;
+.info-item:hover .icone{
+    color:#fff;
 }
 
-.contato-formulario button:hover {
-    background: #a86e33;
+.info-texto h3{
+    font-size:.83rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#183C2B;
+    margin-bottom:8px;
 }
 
-/* Responsividade */
-@media(max-width: 900px){
-    .contato-conteudo {
-        flex-direction: column;
-        align-items: center;
-        gap: 50px;
+.info-texto p{
+    color:#5B5048;
+    line-height:1.7;
+    font-size:.95rem;
+}
+
+.espaco-top{
+    margin-top:12px;
+}
+
+/* whatsapp */
+
+.btn-whatsapp{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:14px;
+    padding:13px 24px;
+    background:#183C2B;
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    transition:.35s;
+}
+
+.btn-whatsapp:hover{
+    background:#B96A43;
+    transform:translateY(-3px);
+    box-shadow:0 10px 18px rgba(185,106,67,.30);
+}
+
+/* Nossas redes de contato.... */
+
+.redes-area{
+    margin-top:45px;
+}
+
+.redes-sociais{
+    display:flex;
+    gap:16px;
+    margin-top:22px;
+}
+
+.wrapper-social{
+    width:50px;
+    height:50px;
+    border:1px solid #D1A054;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    color:#183C2B;
+    font-size:19px;
+    transition:.35s;
+}
+
+.wrapper-social:hover{
+    background:#183C2B;
+    color:#fff;
+    transform:translateY(-5px);
+}
+
+/* Formulario */
+
+.contato-formulario{
+    width:100%;
+}
+
+.formulario{
+    display:flex;
+    flex-direction:column;
+}
+
+.formulario label{
+    font-size:.82rem;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#183C2B;
+    margin-bottom:8px;
+    margin-top:18px;
+}
+
+.formulario label:first-of-type{
+    margin-top:0;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea{
+    width:100%;
+    padding:16px 18px;
+    border:1px solid rgba(209,160,84,.35);
+    background:#FCF9F4;
+    color:#4A3428;
+    font-family:'Montserrat',sans-serif;
+    font-size:.95rem;
+    outline:none;
+    transition:
+        border-color .3s,
+        box-shadow .3s,
+        background .3s,
+        transform .25s;
+}
+
+.formulario textarea{
+    resize:vertical;
+    min-height:170px;
+}
+
+.formulario input::placeholder,
+.formulario textarea::placeholder{
+    color:#A39688;
+}
+
+.formulario input:focus,
+.formulario select:focus,
+.formulario textarea:focus{
+    border-color:#B96A43;
+    background:#FFFFFF;
+    box-shadow:0 0 0 4px rgba(185,106,67,.10);
+    transform:translateY(-2px);
+}
+
+/* Enviar*/
+
+.btn-enviar{
+    margin-top:30px;
+    padding:17px 26px;
+    border:none;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+
+    background:#B96A43;
+    color:#fff;
+
+    font-family:'Montserrat',sans-serif;
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    transition:
+        transform .35s cubic-bezier(.175,.885,.32,1.275),
+        box-shadow .35s,
+        filter .25s;
+}
+
+.btn-enviar:hover{
+    transform:translateY(-4px) scale(1.02);
+    filter:brightness(1.05);
+    box-shadow:0 15px 25px rgba(185,106,67,.35);
+}
+
+.btn-enviar:active{
+    transform:translateY(-1px);
+}
+
+/*Belas Animações*/
+
+.info-item,
+.wrapper-social,
+.btn-whatsapp,
+.btn-enviar,
+.formulario input,
+.formulario select,
+.formulario textarea{
+    transition-duration:.35s;
+}
+
+/*Metendo responsividade nessa coisa*/
+
+@media (max-width:1100px){
+
+    .contato-conteudo{
+        grid-template-columns:1fr;
+        gap:45px;
     }
-    .contato-info {
-        width: 100%;
-        max-width: 400px;
+
+    .contato-info{
+        width:100%;
     }
+
+}
+
+@media (max-width:768px){
+
+    .contato{
+        padding:60px 18px 80px;
+    }
+
+    .contato-header{
+        margin-bottom:60px;
+    }
+
+    .contato-header h1{
+        font-size:3.2rem;
+    }
+
+    .contato-header p{
+        font-size:1rem;
+        line-height:1.7;
+    }
+
+    .subtitulo{
+        letter-spacing:3px;
+        font-size:.75rem;
+    }
+
+    .subtitulo::before,
+    .subtitulo::after{
+        width:30px;
+    }
+
+    .info-card,
+    .formulario{
+        padding:30px;
+    }
+
+    .titulo-area{
+        margin-bottom:28px;
+    }
+
+    .titulo-area h2{
+        font-size:1.8rem;
+    }
+
+    .container-icone{
+        width:52px;
+        height:52px;
+    }
+
+    .btn-whatsapp{
+        width:100%;
+        justify-content:center;
+    }
+
+    .btn-enviar{
+        width:100%;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .contato{
+        padding:50px 16px 70px;
+    }
+
+    .contato-header h1{
+        font-size:2.6rem;
+    }
+
+    .enfeite-titulo1{
+        width:140px;
+    }
+
+    .enfeite-titulo2{
+        width:145px;
+    }
+
+    .titulo-area{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .titulo-area span{
+        width:40px;
+    }
+
+    .info-item{
+        gap:14px;
+        padding:18px 0;
+    }
+
+    .container-icone{
+        width:48px;
+        height:48px;
+    }
+
+    .icone{
+        font-size:18px;
+    }
+
+    .wrapper-social{
+        width:46px;
+        height:46px;
+        font-size:17px;
+    }
+
+    .formulario input,
+    .formulario select,
+    .formulario textarea{
+        padding:14px;
+    }
+
+    .btn-enviar{
+        padding:15px;
+        font-size:.9rem;
+    }
+
 }
