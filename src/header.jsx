@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ShoppingBasket, User, Search, ShieldCheck } from 'lucide-react';
+import { Menu, X, ShoppingBasket, User, ShieldCheck } from 'lucide-react';
 
 export default function Header({ colors, setTelaAtual, totalItens, usuario, onSair }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +42,6 @@ export default function Header({ colors, setTelaAtual, totalItens, usuario, onSa
 
           {/* Icons */}
           <div className="flex items-center space-x-3 sm:space-x-4 md:space-x-6" style={{ color: colors.green }}>
-            <button className="hover:opacity-70 p-1 hidden sm:block"><Search size={20} /></button>
             {usuario?.role === 'admin' && (
               <button onClick={() => navegarPara('admin')} className="hover:opacity-70 p-1 hidden sm:block" title="Admin">
                 <ShieldCheck size={20} />
@@ -72,18 +71,18 @@ export default function Header({ colors, setTelaAtual, totalItens, usuario, onSa
 
       {/* Mobile Menu Flutuante */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 w-full shadow-lg border-b md:hidden z-50" style={{ backgroundColor: colors.cream, borderColor: colors.gold }}>
+        <div className="absolute top-full left-0 w-full shadow-lg border-b md:hidden z-50" style={{ backgroundColor: colors.green, borderColor: colors.green }}>
           <nav className="px-4 pt-3 pb-6 space-y-2 flex flex-col items-start">
-            <button onClick={() => navegarPara('home')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Home</button>
-            <button onClick={() => navegarPara('sobre')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Sobre</button>
-            <button onClick={() => navegarPara('catalogo')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Catálogo</button>
-            <button onClick={() => navegarPara('contatos')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Contatos</button>
-            <button onClick={() => navegarPara(usuario ? 'home' : 'cadastro')} className="w-full text-left block px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>{usuario ? 'Minha Conta' : 'Minha Conta / Cadastro'}</button>
+            <button onClick={() => navegarPara('home')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.cream }}>Home</button>
+            <button onClick={() => navegarPara('sobre')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.cream }}>Sobre</button>
+            <button onClick={() => navegarPara('catalogo')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.cream }}>Catálogo</button>
+            <button onClick={() => navegarPara('contatos')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.cream }}>Contatos</button>
+            <button onClick={() => navegarPara(usuario ? 'home' : 'cadastro')} className="w-full text-left block px-3 py-2.5 text-base font-medium" style={{ color: colors.cream }}>{usuario ? 'Minha Conta' : 'Minha Conta / Cadastro'}</button>
             {usuario?.role === 'admin' && (
-              <button onClick={() => navegarPara('admin')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.green }}>Admin</button>
+              <button onClick={() => navegarPara('admin')} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.cream }}>Admin</button>
             )}
             {usuario && (
-              <button onClick={onSair} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.terracotta }}>Sair</button>
+              <button onClick={onSair} className="w-full text-left px-3 py-2.5 text-base font-medium" style={{ color: colors.cream }}>Sair</button>
             )}
           </nav>
         </div>

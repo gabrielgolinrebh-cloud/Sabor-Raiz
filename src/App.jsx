@@ -199,19 +199,19 @@ export default function App() {
         )}
       </main>
 
-      <footer className="mt-auto border-t" style={{ backgroundColor: colors.cream, color: colors.green, borderColor: `${colors.gold}40` }}>
+      <footer className="mt-auto border-t" style={{ backgroundColor: colors.green, color: colors.cream, borderColor: colors.green }}>
         <div className="max-w-7xl mx-auto px-4 pt-16 pb-6 sm:px-6 lg:px-8 w-full relative">
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
             
             <div className="flex flex-col space-y-4">
               <div className="text-left">
-                <h2 className="font-title text-4xl m-0 tracking-tight" style={{ color: colors.green }}>
-                  Sabor<span style={{ color: colors.terracotta }}>Raiz</span>
+                <h2 className="font-title text-4xl m-0 tracking-tight" style={{ color: colors.cream }}>
+                  Sabor<span style={{ color: colors.gold }}>Raiz</span>
                 </h2>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="h-px w-8" style={{ backgroundColor: colors.gold }}></span>
-                  <span className="uppercase tracking-[0.3em] text-sm font-semibold" style={{ color: colors.green }}>Cestas</span>
+                  <span className="uppercase tracking-[0.3em] text-sm font-semibold" style={{ color: colors.cream }}>Cestas</span>
                   <span className="h-px w-8" style={{ backgroundColor: colors.gold }}></span>
                 </div>
               </div>
@@ -221,7 +221,7 @@ export default function App() {
             </div>
 
             <div className="text-left">
-              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
+              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.cream }}>
                 Links Rápidos
               </h4>
               <ul className="space-y-3 text-sm font-medium opacity-90">
@@ -238,7 +238,7 @@ export default function App() {
                     <button 
                       onClick={() => setTelaAtual(item.acao)} 
                       className="bg-transparent border-none cursor-pointer transition-colors hover:font-bold p-0 m-0 text-left"
-                      style={{ color: colors.green }}
+                      style={{ color: colors.cream }}
                     >
                       {item.label}
                     </button>
@@ -248,7 +248,7 @@ export default function App() {
             </div>
 
             <div className="text-left">
-              <h4 className="font-bold text-sm sm:text-base uppercase tracking-wider mb-6" style={{ color: colors.green }}>
+              <h4 className="font-bold text-sm sm:text-base uppercase tracking-wider mb-6" style={{ color: colors.cream }}>
                 Informações
               </h4>
               <ul className="space-y-4 text-sm sm:text-base font-medium opacity-90">
@@ -257,7 +257,7 @@ export default function App() {
                     <button 
                       onClick={() => setInfoPopupModal(item)} // Abre o pop-up com o texto correspondente
                       className="bg-transparent border-none cursor-pointer transition-all hover:opacity-70 p-0 m-0 text-left"
-                      style={{ color: colors.green }}
+                      style={{ color: colors.cream }}
                     >
                       {item}
                     </button>
@@ -267,7 +267,7 @@ export default function App() {
             </div>
 
             <div className="text-left relative flex flex-col items-start">
-              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
+              <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.cream }}>
                 Siga-nos
               </h4>
               <div className="flex gap-3 mb-6 relative z-10">
@@ -280,7 +280,7 @@ export default function App() {
                     key={index} 
                     href={social.link} 
                     className="w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 hover:scale-110"
-                    style={{ borderColor: colors.green, color: colors.green }}
+                    style={{ borderColor: colors.cream, color: colors.cream }}
                   >
                     {social.icon}
                   </a>
@@ -289,7 +289,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="pt-6 border-t flex flex-col text-center text-xs sm:text-sm font-medium opacity-80" style={{ borderColor: `${colors.gold}40` }}>
+          <div className="pt-6 border-t flex flex-col text-center text-xs sm:text-sm font-medium opacity-80" style={{ borderColor: colors.gold }}>
             <p>&copy; {new Date().getFullYear()} Sabor Raiz Cestas. Todos os direitos reservados.</p>
           </div>
         </div>

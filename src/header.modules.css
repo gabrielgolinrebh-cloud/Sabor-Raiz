@@ -30,3 +30,13 @@
   background-color: rgba(246, 235, 217, 0.92) !important; /* cream translúcido */
   transition: all 0.3s ease;
 }
+
+/* Mobile Menu Flutuante */
+.mobileMenu {
+  background-color: #2F5D50; /* verde escuro */
+  border-color: #2F5D50;
+}
+
+.mobileMenuButton {
+  color: #F6EBD9; /* creme */
+}
