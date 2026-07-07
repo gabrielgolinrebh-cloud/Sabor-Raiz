@@ -74,7 +74,7 @@ export default function Home({ colors, setTelaAtual }) {
           initial="hidden" animate="visible" variants={fadeUp}
           className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center"
         >
-          <img src={logoSaborRaiz} alt="Logo Sabor Raiz" className="mb-2 w-24 h-auto mx-auto" />
+          <img src={logoSaborRaiz} alt="Logo Sabor Raiz" className="mb-0 w-24 h-auto mx-auto" />
           <h2 className={`font-title text-4xl sm:text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-lg ${styles['font-title']}`}>
             Sabores que contam histórias.
           </h2>
