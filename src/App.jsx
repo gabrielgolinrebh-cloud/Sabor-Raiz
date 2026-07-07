@@ -44,13 +44,11 @@ export default function App() {
   // Função para adicionar produto agrupando por quantidade se já existir
   const adicionarAoPedido = (produto) => {
     setMeusPedidos(pedidosAtuais => {
-      // Procura se já existe um pedido em preparação com esse mesmo produto principal
       const pedidoExistenteIndex = pedidosAtuais.findIndex(
         p => p.status === "Em preparação" && p.items.some(item => item.nome === produto.nome)
       );
 
       if (pedidoExistenteIndex !== -1) {
-        // Se já existe, clona a lista e atualiza o item e o valor total
         const novosPedidos = [...pedidosAtuais];
         const pedido = { ...novosPedidos[pedidoExistenteIndex] };
         
@@ -61,12 +59,10 @@ export default function App() {
           return item;
         });
 
-        // Recalcula o total do pedido somando preço * quantidade de todos os itens
         pedido.total = pedido.items.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
         novosPedidos[pedidoExistenteIndex] = pedido;
         return novosPedidos;
       } else {
-        // Se não existe, cria um novo card de pedido
         const novoPedido = {
           id: `#SR-${Math.floor(Math.random() * 9000) + 1000}`,
           data: new Date().toLocaleDateString('pt-BR'),
@@ -86,7 +82,6 @@ export default function App() {
     });
   };
 
-  // Calcula o total de itens para exibir na bolha da cesta/header
   const totalItensCesta = meusPedidos.reduce((acc, pedido) => {
     return acc + pedido.items.reduce((subAcc, item) => subAcc + item.qtd, 0);
   }, 0);
@@ -112,7 +107,6 @@ export default function App() {
         `}
       </style>
 
-      {/* HEADER GLOBAL Passando a quantidade de itens */}
       <Header colors={colors} setTelaAtual={setTelaAtual} totalItens={totalItensCesta} />
 
       <main className="flex-grow">
@@ -127,7 +121,7 @@ export default function App() {
         )}
 
         {telaAtual === 'sobre' && (
-          <Sobre aoVoltar={() => setTelaAtual('home')} />
+          <Sobre aoVoltar={setTelaAtual} />
         )}
 
         {telaAtual === 'contatos' && (
@@ -148,7 +142,6 @@ export default function App() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
             
-            {/* Coluna 1: Logo e Texto */}
             <div className="flex flex-col space-y-4">
               <div className="text-left">
                 <h2 className="font-title text-4xl m-0 tracking-tight" style={{ color: colors.green }}>
@@ -165,7 +158,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Coluna 2: Links Rápidos */}
             <div className="text-left">
               <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Links Rápidos
@@ -193,7 +185,6 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Coluna 3: Informações */}
             <div className="text-left">
               <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Informações
@@ -218,7 +209,6 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Coluna 4: Redes Sociais e Imagem */}
             <div className="text-left relative flex flex-col items-start">
               <h4 className="font-bold text-sm uppercase tracking-wider mb-6" style={{ color: colors.green }}>
                 Siga-nos
