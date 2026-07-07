@@ -5,6 +5,7 @@ import fundoGeral from '../docs/imagens/fundogeral.jpg';
 import logoSaborRaiz from '../docs/imagens/logosaborraiz.png';
 import styles from './Home.module.css';
 import imageCesta from '../docs/imagens/cestahome.png';
+
 // --- NOVO: COMPONENTE DO CONTADOR ANIMADO ---
 function AnimatedCounter({ from = 0, to, suffix = "" }) {
   const nodeRef = React.useRef(null);
@@ -121,7 +122,7 @@ export default function Home({ colors, setTelaAtual }) {
       </section>
 
       {/* HISTÓRICO / SOBRE NÓS */}
-      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full overflow-hidden">
+      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full overflow-hidden">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
@@ -152,7 +153,7 @@ export default function Home({ colors, setTelaAtual }) {
       </section>
 
       {/* PRODUTOS EM DESTAQUE */}
-      <section className="py-20 bg-stone-50" style={{ backgroundColor: `${colors.cream}30` }}>
+      <section className="py-16 bg-stone-50 border-t" style={{ backgroundColor: `${colors.cream}30`, borderColor: `${colors.gold}40` }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h3 className={`text-4xl mb-4 ${styles['font-title']}`} style={{ color: colors.green }}>Mais Desejadas</h3>

@@ -206,14 +206,7 @@ export default function App() {
             
             <div className="flex flex-col space-y-4">
               <div className="text-left">
-                <h2 className="font-title text-4xl m-0 tracking-tight" style={{ color: colors.cream }}>
-                  Sabor<span style={{ color: colors.gold }}>Raiz</span>
-                </h2>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="h-px w-8" style={{ backgroundColor: colors.gold }}></span>
-                  <span className="uppercase tracking-[0.3em] text-sm font-semibold" style={{ color: colors.cream }}>Cestas</span>
-                  <span className="h-px w-8" style={{ backgroundColor: colors.gold }}></span>
-                </div>
+                <img src="/docs/imagens/logo-secundaria.png" alt="Logo Sabor Raiz" className="h-16 sm:h-20 mb-2" />
               </div>
               <p className="text-sm mt-4 max-w-xs leading-relaxed opacity-90 font-medium">
                 Cestas especiais com produtos regionais e muito amor para todos os momentos.
@@ -229,8 +222,6 @@ export default function App() {
                   { label: 'Início', acao: 'home' },
                   { label: 'Sobre Nós', acao: 'sobre' },
                   { label: 'Nossas Cestas', acao: 'catalogo' },
-                  { label: 'Produtos', acao: 'produtos' },
-                  { label: 'Empresariais', acao: 'empresariais' },
                   { label: 'Contato', acao: 'contatos' }
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-2">

@@ -25,11 +25,9 @@ export default function Header({ colors, setTelaAtual, totalItens, usuario, onSa
             </button>
           </div>
 
-          {/* Logo Textual */}
+          {/* Logo Imagem */}
           <div className="flex-shrink-0 flex items-center justify-center cursor-pointer select-none" onClick={() => navegarPara('home')}>
-            <h1 className="font-title text-xl sm:text-2xl md:text-3xl font-semibold" style={{ color: colors.terracotta }}>
-              Sabor<span style={{ color: colors.green }}>Raiz</span>
-            </h1>
+            <img src="/docs/imagens/logo-principal.png" alt="Logo Sabor Raiz" className="h-12 sm:h-14 md:h-16" />
           </div>
 
           {/* Desktop Navigation */}
