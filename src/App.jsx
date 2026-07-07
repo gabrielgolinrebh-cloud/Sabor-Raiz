@@ -63,11 +63,6 @@ export default function App() {
     }
   };
 
-<<<<<<< HEAD
-  // Função para adicionar produto agrupando por quantidade se já existir
-  const adicionarAoPedido = (produto) => {
-    setMeusPedidos(pedidosAtuais => {
-=======
   useEffect(() => {
     if (usuario?.id) {
       carregarCarrinho(usuario.id);
@@ -94,7 +89,6 @@ export default function App() {
     }
 
     setMeusPedidos((pedidosAtuais) => {
->>>>>>> 97e05c492cdf12b512e0ab9890fb1b6f15149dd3
       const pedidoExistenteIndex = pedidosAtuais.findIndex(
         (p) => p.status === 'Em preparação' && p.items.some((item) => item.nome === produto.nome)
       );
@@ -110,31 +104,9 @@ export default function App() {
           return item;
         });
 
-<<<<<<< HEAD
-        pedido.total = pedido.items.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
-        novosPedidos[pedidoExistenteIndex] = pedido;
-        return novosPedidos;
-      } else {
-        const novoPedido = {
-          id: `#SR-${Math.floor(Math.random() * 9000) + 1000}`,
-          data: new Date().toLocaleDateString('pt-BR'),
-          status: "Em preparação",
-          statusIcon: Clock,
-          statusColor: colors.terracotta,
-          total: produto.preco,
-          imagemPrincipal: produto.imagem,
-          nomePrincipal: produto.nome,
-          items: [
-            { nome: produto.nome, qtd: 1, preco: produto.preco }
-          ],
-          entrega: "Endereço cadastrado na conta do usuário"
-        };
-        return [novoPedido, ...pedidosAtuais];
-=======
         pedido.total = pedido.items.reduce((acc, item) => acc + item.preco * item.qtd, 0);
         novosPedidos[pedidoExistenteIndex] = pedido;
         return novosPedidos;
->>>>>>> 97e05c492cdf12b512e0ab9890fb1b6f15149dd3
       }
 
       const novoPedido = {
@@ -193,11 +165,7 @@ export default function App() {
         `}
       </style>
 
-<<<<<<< HEAD
-      <Header colors={colors} setTelaAtual={setTelaAtual} totalItens={totalItensCesta} />
-=======
       <Header colors={colors} setTelaAtual={setTelaAtual} totalItens={totalItensCesta} usuario={usuario} onSair={handleSair} />
->>>>>>> 97e05c492cdf12b512e0ab9890fb1b6f15149dd3
 
       <main className="flex-grow">
         {telaAtual === 'home' && <Home colors={colors} setTelaAtual={setTelaAtual} />}
