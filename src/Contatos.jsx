@@ -2,8 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import style from "./Contatos.module.css";
 
-import enfeiteTitulo from "../docs/imagens/enfeiteTitulo.png";
-import enfeiteTitulo2 from "../docs/imagens/enfeiteTitulo2.png";
+import enfeiteTitulo from "../docs/imagens/logosaborraizTerracota.png";
 
 import {
   FaPhoneAlt,
@@ -129,7 +128,7 @@ function Contatos() {
 
               <div className={style["info-texto"]}>
                 <h3>Telefone</h3>
-                <p>(11) 99999-9999</p>
+                <p>(55) 99657-2766</p>
               </div>
 
             </div>
@@ -143,10 +142,10 @@ function Contatos() {
               <div className={style["info-texto"]}>
                 <h3>WhatsApp</h3>
 
-                <p>(11) 99999-9999</p>
+                <p>(55) 99657-2766</p>
 
                 <a
-                    href="https://wa.me/5511987654321?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20cestas%20da%20sua%20loja."
+                    href="https://wa.me/5555996572766?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20cestas%20da%20sua%20loja."
                     target="_blank"
                     rel="noopener noreferrer"
                     className={style["btn-whatsapp"]}
@@ -168,10 +167,10 @@ function Contatos() {
               <div className={style["info-texto"]}>
                 <h3>Endereço</h3>
 
-                <p>Rua das Cestas, 123</p>
-                <p>Centro</p>
-                <p>São Paulo - SP</p>
-                <p>CEP: 01234-567</p>
+                <p>Rua Santos Dumont,</p>
+                <p>820 Centro</p>
+                <p>Rio Grande do Sul - RS</p>
+                <p>CEP: 98780-109</p>
 
               </div>
 
@@ -203,7 +202,7 @@ function Contatos() {
 
               <div className={style["titulo-area"]}>
                 <span></span>
-                <h2>Nos acompanhe</h2>
+                <h2>Redes Sociais</h2>
               </div>
 
               <div className={style["redes-sociais"]}>

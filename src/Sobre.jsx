@@ -2,6 +2,7 @@ import React from 'react';
 import { Leaf, Heart, ShieldCheck, Truck, ArrowRight } from 'lucide-react';
 // Buscando a imagem de forma segura diretamente da pasta especificada
 import imagemSobre from '../docs/imagens/imagem_sobre.png';
+import logosaborraizTerracota from '../docs/imagens/logosaborraizTerracota.png'; 
 
 export default function Sobre({ aoVoltar }) {
   const colors = {
@@ -59,9 +60,11 @@ export default function Sobre({ aoVoltar }) {
         <div className="w-full bg-white/75 backdrop-blur-md rounded-sm border p-8 md:p-14 shadow-2xl border-white/50 flex flex-col items-center">
           
           {/* Topo Decorado */}
-          <div className="text-center mb-8">
-            <Leaf className="mx-auto mb-3" size={26} style={{ color: colors.terracotta }} />
-            <div className="flex items-center justify-center gap-3 mb-1">
+          <div className="text-center mb-8"> 
+
+            <img src={logosaborraizTerracota} alt="Logo Sabor Raiz" className="mx-auto mb-1 w-24 h-auto"/>
+            <div className="flex items-center justify-center gap-3 mb-2">
+
               <span className="h-px w-6" style={{ backgroundColor: colors.gold }}></span>
               <span className="uppercase tracking-[0.25em] text-[10px] font-bold" style={{ color: colors.terracotta }}>Nossa Origem</span>
               <span className="h-px w-6" style={{ backgroundColor: colors.gold }}></span>
