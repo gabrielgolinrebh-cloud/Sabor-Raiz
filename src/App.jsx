@@ -191,13 +191,8 @@ export default function App() {
         )}
 
         {telaAtual === 'pedidos' && (
-       <Pedidos 
-       meusPedidos={meusPedidos} 
-       setMeusPedidos={setMeusPedidos}
-       aoVoltar={() => setTelaAtual('home')} 
-       colors={colors}
-       />
-       )}
+          <Pedidos meusPedidos={meusPedidos} aoVoltar={() => setTelaAtual('home')} />
+        )}
 
         {telaAtual === 'admin' && usuario?.role === 'admin' && (
           <AreaAdmin colors={colors} usuario={usuario} onVoltar={() => setTelaAtual('home')} />
