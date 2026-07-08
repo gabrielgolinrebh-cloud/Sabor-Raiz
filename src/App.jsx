@@ -191,8 +191,13 @@ export default function App() {
         )}
 
         {telaAtual === 'pedidos' && (
-          <Pedidos meusPedidos={meusPedidos} aoVoltar={() => setTelaAtual('home')} />
-        )}
+       <Pedidos 
+       meusPedidos={meusPedidos} 
+       setMeusPedidos={setMeusPedidos}
+       aoVoltar={() => setTelaAtual('home')} 
+       colors={colors}
+       />
+       )}
 
         {telaAtual === 'admin' && usuario?.role === 'admin' && (
           <AreaAdmin colors={colors} usuario={usuario} onVoltar={() => setTelaAtual('home')} />
@@ -222,6 +227,8 @@ export default function App() {
                   { label: 'Início', acao: 'home' },
                   { label: 'Sobre Nós', acao: 'sobre' },
                   { label: 'Nossas Cestas', acao: 'catalogo' },
+                  { label: 'Produtos', acao: 'catalogo' },
+                  { label: 'Empresariais', acao: 'empresariais' },
                   { label: 'Contato', acao: 'contatos' }
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-2">
