@@ -7,7 +7,8 @@ const app = express();
 const PORT = 3000;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 const hashPassword = (senha) => crypto.createHash('sha256').update(senha).digest('hex');
 
@@ -38,11 +39,19 @@ const createTables = async () => {
       categoria VARCHAR(80) NOT NULL,
       preco DECIMAL(10,2) NOT NULL,
       descricao TEXT,
-      imagem VARCHAR(500),
+      imagem TEXT,
       usuario_id INT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
+
+  try {
+    await pool.query('ALTER TABLE produtos MODIFY COLUMN imagem TEXT NULL');
+  } catch (error) {
+    if (!String(error.message).includes('Unknown column') && !String(error.message).includes('Incorrect column name')) {
+      console.warn('Aviso ao ajustar coluna imagem:', error.message);
+    }
+  }
 
   try {
     await pool.query('ALTER TABLE produtos ADD COLUMN usuario_id INT NULL');
@@ -256,6 +265,34 @@ app.post('/api/produtos', async (req, res) => {
   }
 });
 
+app.put('/api/produtos/:id', async (req, res) => {
+  try {
+    const { nome, categoria, preco, descricao, imagem, usuarioId, usuario_id } = req.body;
+    if (!nome || !categoria || !preco) {
+      return res.status(400).json({ error: 'Nome, categoria e preço são obrigatórios.' });
+    }
+
+    const ownerId = usuarioId ?? usuario_id ?? null;
+    await pool.query(
+      'UPDATE produtos SET nome = ?, categoria = ?, preco = ?, descricao = ?, imagem = ?, usuario_id = ? WHERE id = ?',
+      [nome, categoria, preco, descricao || '', imagem || '', ownerId, req.params.id]
+    );
+
+    const [rows] = await pool.query(
+      `SELECT p.*, u.nome AS usuario_nome
+       FROM produtos p
+       LEFT JOIN usuarios u ON u.id = p.usuario_id
+       WHERE p.id = ?`,
+      [req.params.id]
+    );
+
+    res.json({ success: true, produto: rows[0] });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao atualizar produto.' });
+  }
+});
+
 app.delete('/api/produtos/:id', async (req, res) => {
   try {
     await pool.query('DELETE FROM produtos WHERE id = ?', [req.params.id]);
@@ -341,6 +378,33 @@ app.post('/api/admin/usuarios', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao criar usuário.' });
+  }
+});
+
+app.put('/api/admin/usuarios/:id', async (req, res) => {
+  try {
+    const { nome, email, senha, role = 'cliente' } = req.body;
+    if (!nome || !email) {
+      return res.status(400).json({ error: 'Nome e e-mail são obrigatórios.' });
+    }
+
+    if (senha) {
+      await pool.query(
+        'UPDATE usuarios SET nome = ?, email = ?, senha = ?, role = ? WHERE id = ?',
+        [nome, email, hashPassword(senha), role, req.params.id]
+      );
+    } else {
+      await pool.query(
+        'UPDATE usuarios SET nome = ?, email = ?, role = ? WHERE id = ?',
+        [nome, email, role, req.params.id]
+      );
+    }
+
+    const [rows] = await pool.query('SELECT id, nome, email, role FROM usuarios WHERE id = ?', [req.params.id]);
+    res.json({ success: true, usuario: rows[0] });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao atualizar usuário.' });
   }
 });
 

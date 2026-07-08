@@ -43,6 +43,13 @@ export async function adicionarProduto(produto) {
   });
 }
 
+export async function atualizarProduto(id, produto) {
+  return request(`/produtos/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(produto),
+  });
+}
+
 export async function removerProduto(id) {
   return request(`/produtos/${id}`, {
     method: 'DELETE',
@@ -73,6 +80,13 @@ export async function listarUsuarios() {
 export async function criarUsuarioAdmin(payload) {
   return request('/admin/usuarios', {
     method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function atualizarUsuario(id, payload) {
+  return request(`/admin/usuarios/${id}`, {
+    method: 'PUT',
     body: JSON.stringify(payload),
   });
 }

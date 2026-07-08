@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Plus, Trash2, ArrowLeft, UserPlus, ShoppingCart } from 'lucide-react';
 import {
   adicionarProduto,
+  atualizarProduto,
   criarUsuarioAdmin,
+  atualizarUsuario,
   listarCarrinhoAdmin,
   listarProdutos,
   listarUsuarios,
@@ -17,6 +19,8 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
   const [itensCarrinho, setItensCarrinho] = useState([]);
   const [formProduto, setFormProduto] = useState({ nome: '', categoria: 'produtos', preco: '', descricao: '', imagem: '', usuarioId: '' });
   const [formUsuario, setFormUsuario] = useState({ nome: '', email: '', senha: '', role: 'admin' });
+  const [editingProdutoId, setEditingProdutoId] = useState(null);
+  const [editingUsuarioId, setEditingUsuarioId] = useState(null);
   const [erro, setErro] = useState('');
   const [sucesso, setSucesso] = useState('');
   const [cardsVisiveis, setCardsVisiveis] = useState({ produto: false, usuario: false, produtos: false, carrinho: false, usuarios: false });
@@ -56,10 +60,52 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
   }, []);
 
   const toggleCard = (chave) => {
-    setCardsVisiveis((estadoAnterior) => ({
-      ...estadoAnterior,
-      [chave]: !estadoAnterior[chave],
-    }));
+    setCardsVisiveis((estadoAnterior) => {
+      const aberto = !estadoAnterior[chave];
+      if (aberto) {
+        if (chave === 'produto') {
+          setFormProduto({ nome: '', categoria: 'produtos', preco: '', descricao: '', imagem: '', usuarioId: '' });
+          setEditingProdutoId(null);
+        }
+        if (chave === 'usuario') {
+          setFormUsuario({ nome: '', email: '', senha: '', role: 'admin' });
+          setEditingUsuarioId(null);
+        }
+      }
+
+      return {
+        produto: false,
+        usuario: false,
+        produtos: false,
+        carrinho: false,
+        usuarios: false,
+        [chave]: aberto,
+      };
+    });
+  };
+
+  const limparFormularioProduto = () => {
+    setFormProduto({ nome: '', categoria: 'produtos', preco: '', descricao: '', imagem: '', usuarioId: '' });
+    setEditingProdutoId(null);
+  };
+
+  const limparFormularioUsuario = () => {
+    setFormUsuario({ nome: '', email: '', senha: '', role: 'admin' });
+    setEditingUsuarioId(null);
+  };
+
+  const handleImageFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setFormProduto((prevState) => ({
+        ...prevState,
+        imagem: reader.result,
+      }));
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleProdutoSubmit = async (e) => {
@@ -73,11 +119,17 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
         preco: Number(formProduto.preco),
         usuarioId: formProduto.usuarioId ? Number(formProduto.usuarioId) : null,
       };
-      const resposta = await adicionarProduto(payload);
+
+      const resposta = editingProdutoId
+        ? await atualizarProduto(editingProdutoId, payload)
+        : await adicionarProduto(payload);
+
       if (resposta.success) {
-        setSucesso('Produto adicionado com sucesso.');
-        setFormProduto({ nome: '', categoria: 'produtos', preco: '', descricao: '', imagem: '', usuarioId: '' });
+        setSucesso(editingProdutoId ? 'Produto atualizado com sucesso.' : 'Produto adicionado com sucesso.');
+        limparFormularioProduto();
         carregarDados();
+      } else {
+        setErro(resposta.error || 'Não foi possível adicionar/atualizar o produto.');
       }
     } catch (error) {
       setErro(error.message);
@@ -90,15 +142,50 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
     setSucesso('');
 
     try {
-      const resposta = await criarUsuarioAdmin(formUsuario);
+      const resposta = editingUsuarioId
+        ? await atualizarUsuario(editingUsuarioId, formUsuario)
+        : await criarUsuarioAdmin(formUsuario);
+
       if (resposta.success) {
-        setSucesso('Usuário criado com sucesso.');
-        setFormUsuario({ nome: '', email: '', senha: '', role: 'admin' });
+        setSucesso(editingUsuarioId ? 'Usuário atualizado com sucesso.' : 'Usuário criado com sucesso.');
+        limparFormularioUsuario();
         carregarDados();
+      } else {
+        setErro(resposta.error || 'Não foi possível criar/atualizar o usuário.');
       }
     } catch (error) {
       setErro(error.message);
     }
+  };
+
+  const handleEditarProduto = (produto) => {
+    setEditingProdutoId(produto.id);
+    setFormProduto({
+      nome: produto.nome || '',
+      categoria: produto.categoria || 'produtos',
+      preco: produto.preco?.toString() ?? '',
+      descricao: produto.descricao || '',
+      imagem: produto.imagem || '',
+      usuarioId: produto.usuario_id ?? '',
+    });
+    setCardsVisiveis((estadoAnterior) => ({
+      ...estadoAnterior,
+      produto: true,
+    }));
+  };
+
+  const handleEditarUsuario = (usuarioItem) => {
+    setEditingUsuarioId(usuarioItem.id);
+    setFormUsuario({
+      nome: usuarioItem.nome || '',
+      email: usuarioItem.email || '',
+      senha: '',
+      role: usuarioItem.role || 'admin',
+    });
+    setCardsVisiveis((estadoAnterior) => ({
+      ...estadoAnterior,
+      usuario: true,
+    }));
   };
 
   const removerProdutoLocal = async (id) => {
@@ -181,7 +268,7 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
 
         {cardsVisiveis.produto && (
           <section style={{ backgroundColor: '#fff', borderRadius: '12px', padding: '1.25rem', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
-            <h3 style={{ color: colors.green, marginBottom: '1rem' }}>Adicionar produto</h3>
+            <h3 style={{ color: colors.green, marginBottom: '1rem' }}>{editingProdutoId ? 'Editar produto' : 'Adicionar produto'}</h3>
             <form onSubmit={handleProdutoSubmit} style={{ display: 'grid', gap: '0.75rem' }}>
               <input value={formProduto.nome} onChange={(e) => setFormProduto({ ...formProduto, nome: e.target.value })} placeholder="Nome" required style={{ padding: '0.7rem', border: '1px solid #ddd', borderRadius: '6px' }} />
               <input value={formProduto.categoria} onChange={(e) => setFormProduto({ ...formProduto, categoria: e.target.value })} placeholder="Categoria" required style={{ padding: '0.7rem', border: '1px solid #ddd', borderRadius: '6px' }} />
@@ -193,10 +280,24 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
                 ))}
               </select>
               <input value={formProduto.imagem} onChange={(e) => setFormProduto({ ...formProduto, imagem: e.target.value })} placeholder="URL da imagem" style={{ padding: '0.7rem', border: '1px solid #ddd', borderRadius: '6px' }} />
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', color: '#444', fontSize: '0.95rem' }}>
+                Ou selecione uma imagem do computador
+                <input type="file" accept="image/*" onChange={handleImageFileChange} style={{ padding: '0.35rem 0' }} />
+              </label>
+              {formProduto.imagem && (
+                <img src={formProduto.imagem} alt="Preview do produto" style={{ maxWidth: '100%', maxHeight: '220px', objectFit: 'contain', borderRadius: '8px', border: '1px solid #ddd' }} />
+              )}
               <textarea value={formProduto.descricao} onChange={(e) => setFormProduto({ ...formProduto, descricao: e.target.value })} placeholder="Descrição" rows="3" style={{ padding: '0.7rem', border: '1px solid #ddd', borderRadius: '6px' }} />
-              <button type="submit" style={{ backgroundColor: colors.terracotta, color: '#fff', border: 'none', padding: '0.8rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
-                <Plus size={16} /> Adicionar produto
-              </button>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <button type="submit" style={{ backgroundColor: colors.terracotta, color: '#fff', border: 'none', padding: '0.8rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
+                  <Plus size={16} /> {editingProdutoId ? 'Salvar produto' : 'Adicionar produto'}
+                </button>
+                {editingProdutoId && (
+                  <button type="button" onClick={limparFormularioProduto} style={{ backgroundColor: '#f5f5f5', color: colors.brown, border: '1px solid #ddd', padding: '0.8rem', borderRadius: '6px', cursor: 'pointer' }}>
+                    Cancelar edição
+                  </button>
+                )}
+              </div>
             </form>
           </section>
         )}
@@ -229,10 +330,18 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
                     <div style={{ color: '#666', fontSize: '0.9rem' }}>
                       {produto.categoria} • R$ {Number(produto.preco).toFixed(2)} • {produto.usuario_nome || 'Sem dono'}
                     </div>
+                    <div style={{ color: '#666', fontSize: '0.85rem', marginTop: '0.25rem' }}>
+                      ID do produto: {produto.id} • Dono ID: {produto.usuario_id ?? 'N/A'}
+                    </div>
                   </div>
-                  <button onClick={() => removerProdutoLocal(produto.id)} style={{ border: 'none', backgroundColor: colors.terracotta, color: '#fff', padding: '0.55rem 0.75rem', borderRadius: '6px', cursor: 'pointer' }}>
-                    <Trash2 size={14} />
-                  </button>
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <button onClick={() => handleEditarProduto(produto)} style={{ border: 'none', backgroundColor: colors.green, color: '#fff', padding: '0.55rem 0.75rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      Editar
+                    </button>
+                    <button onClick={() => removerProdutoLocal(produto.id)} style={{ border: 'none', backgroundColor: colors.terracotta, color: '#fff', padding: '0.55rem 0.75rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -244,16 +353,28 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
             <h3 style={{ color: colors.green, marginBottom: '1rem' }}>Itens no carrinho</h3>
             <div style={{ display: 'grid', gap: '0.75rem' }}>
               {itensCarrinho.map((item) => (
-                <div key={`${item.usuario_id}-${item.produto_id}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', border: '1px solid #eee', padding: '0.85rem', borderRadius: '8px' }}>
-                  <div>
-                    <strong>{item.produto_nome}</strong>
-                    <div style={{ color: '#666', fontSize: '0.9rem' }}>
-                      {item.usuario_nome} • qtd {item.quantidade} • R$ {Number(item.preco).toFixed(2)}
+                <div key={item.id} style={{ display: 'grid', gap: '0.5rem', border: '1px solid #eee', padding: '0.85rem', borderRadius: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+                    <div>
+                      <strong>{item.produto_nome}</strong>
+                      <div style={{ color: '#666', fontSize: '0.9rem' }}>
+                        {item.usuario_nome} • ID do usuário: {item.usuario_id}
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'right', color: '#666', fontSize: '0.9rem' }}>
+                      <div>ID do item: {item.id}</div>
+                      <div>Produto ID: {item.produto_id}</div>
+                      <div>Data: {item.added_at ? new Date(item.added_at).toLocaleString('pt-BR') : 'Sem data'}</div>
                     </div>
                   </div>
-                  <button onClick={() => removerItemCarrinhoLocal(item.usuario_id, item.produto_id)} style={{ border: 'none', backgroundColor: colors.terracotta, color: '#fff', padding: '0.55rem 0.75rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                    <ShoppingCart size={14} /> Remover
-                  </button>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <div style={{ color: '#666', fontSize: '0.9rem' }}>
+                      Quantidade: {item.quantidade} • Valor unitário: R$ {Number(item.preco).toFixed(2)}
+                    </div>
+                    <button onClick={() => removerItemCarrinhoLocal(item.usuario_id, item.produto_id)} style={{ border: 'none', backgroundColor: colors.terracotta, color: '#fff', padding: '0.55rem 0.75rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <ShoppingCart size={14} /> Remover
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -269,10 +390,18 @@ export default function AreaAdmin({ colors, usuario, onVoltar }) {
                   <div>
                     <strong>{usuarioItem.nome}</strong>
                     <div style={{ color: '#666', fontSize: '0.9rem' }}>{usuarioItem.email} • {usuarioItem.role}</div>
+                    <div style={{ color: '#666', fontSize: '0.85rem', marginTop: '0.25rem' }}>
+                      ID do usuário: {usuarioItem.id}
+                    </div>
                   </div>
-                  <button onClick={() => removerUsuarioLocal(usuarioItem.id)} style={{ border: 'none', backgroundColor: colors.terracotta, color: '#fff', padding: '0.55rem 0.75rem', borderRadius: '6px', cursor: 'pointer' }}>
-                    <Trash2 size={14} />
-                  </button>
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <button onClick={() => handleEditarUsuario(usuarioItem)} style={{ border: 'none', backgroundColor: colors.green, color: '#fff', padding: '0.55rem 0.75rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      Editar
+                    </button>
+                    <button onClick={() => removerUsuarioLocal(usuarioItem.id)} style={{ border: 'none', backgroundColor: colors.terracotta, color: '#fff', padding: '0.55rem 0.75rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
