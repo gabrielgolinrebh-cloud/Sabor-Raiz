@@ -51,7 +51,7 @@ const STATS = [
 ];
 
 // --- COMPONENTE PRINCIPAL ---
-export default function Home({ colors, setTelaAtual }) {
+export default function Home({ colors, setTelaAtual, abrirCatalogoComCategoria }) {
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -91,6 +91,7 @@ export default function Home({ colors, setTelaAtual }) {
               Ver Catálogo <ShoppingBasket size={18} />
             </button>
             <button 
+              onClick={() => abrirCatalogoComCategoria ? abrirCatalogoComCategoria('cestas_personalizadas') : setTelaAtual && setTelaAtual('catalogo')}
               className={`w-full sm:w-auto px-8 py-4 rounded-sm font-semibold flex items-center justify-center gap-2 backdrop-blur-md ${styles['hero-btn']}`} 
               style={{ backgroundColor: `${colors.cream}E6`, color: colors.green }}
             >

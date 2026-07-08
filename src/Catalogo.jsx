@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './Catalogo.module.css';
 import { listarProdutos } from './services/api';
 
-export default function Catalogo({ adicionarAoPedido }) {
-  const [categoriaAtiva, setCategoriaAtiva] = useState('todos');
+export default function Catalogo({ adicionarAoPedido, categoriaInicial = 'todos' }) {
+  const [categoriaAtiva, setCategoriaAtiva] = useState(categoriaInicial);
   const [produtos, setProdutos] = useState([]);
 
   const categorias = [

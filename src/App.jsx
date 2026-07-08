@@ -31,6 +31,7 @@ export default function App() {
   const [telaAtual, setTelaAtual] = useState('home');
   const [usuario, setUsuario] = useState(null);
   const [meusPedidos, setMeusPedidos] = useState([]);
+  const [categoriaCatalogoInicial, setCategoriaCatalogoInicial] = useState('todos');
   const [infoPopupModal, setInfoPopupModal] = useState(null);
 
   const colors = {
@@ -144,6 +145,11 @@ export default function App() {
     setTelaAtual('home');
   };
 
+  const abrirCatalogoComCategoria = (categoria) => {
+    setCategoriaCatalogoInicial(categoria);
+    setTelaAtual('catalogo');
+  };
+
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden" style={{ backgroundColor: colors.cream, color: colors.brown, fontFamily: "'Montserrat', sans-serif" }}>
       
@@ -168,7 +174,7 @@ export default function App() {
       <Header colors={colors} setTelaAtual={setTelaAtual} totalItens={totalItensCesta} usuario={usuario} onSair={handleSair} />
 
       <main className="flex-grow">
-        {telaAtual === 'home' && <Home colors={colors} setTelaAtual={setTelaAtual} />}
+        {telaAtual === 'home' && <Home colors={colors} setTelaAtual={setTelaAtual} abrirCatalogoComCategoria={abrirCatalogoComCategoria} />}
         
         {telaAtual === 'cadastro' && (
           <Cadastro aoVoltar={() => setTelaAtual('home')} aoMudarParaLogin={() => setTelaAtual('login')} aoCadastrar={handleCadastro} />
@@ -187,7 +193,11 @@ export default function App() {
         )}
 
         {telaAtual === 'catalogo' && (
-          <Catalogo aoVoltar={() => setTelaAtual('home')} adicionarAoPedido={adicionarAoPedido} />
+          <Catalogo
+            aoVoltar={() => setTelaAtual('home')}
+            adicionarAoPedido={adicionarAoPedido}
+            categoriaInicial={categoriaCatalogoInicial}
+          />
         )}
 
         {telaAtual === 'pedidos' && (
