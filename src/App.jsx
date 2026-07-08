@@ -191,7 +191,12 @@ export default function App() {
         )}
 
         {telaAtual === 'pedidos' && (
-          <Pedidos meusPedidos={meusPedidos} aoVoltar={() => setTelaAtual('home')} />
+          <Pedidos
+            meusPedidos={meusPedidos}
+            setMeusPedidos={setMeusPedidos}
+            aoVoltar={() => setTelaAtual('home')}
+            colors={colors}
+          />
         )}
 
         {telaAtual === 'admin' && usuario?.role === 'admin' && (
