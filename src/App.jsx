@@ -236,9 +236,7 @@ export default function App() {
                 {[
                   { label: 'Início', acao: 'home' },
                   { label: 'Sobre Nós', acao: 'sobre' },
-                  { label: 'Nossas Cestas', acao: 'catalogo' },
-                  { label: 'Produtos', acao: 'catalogo' },
-                  { label: 'Empresariais', acao: 'empresariais' },
+                  { label: 'Catálogo', acao: 'catalogo' },
                   { label: 'Contato', acao: 'contatos' }
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-2">

@@ -144,15 +144,7 @@ function Contatos() {
 
                 <p>(55) 99657-2766</p>
 
-                <a
-                    href="https://wa.me/5555996572766?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20cestas%20da%20sua%20loja."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={style["btn-whatsapp"]}
-                >
-                  <FaWhatsapp />
-                  Conversar no WhatsApp
-                </a>
+
 
               </div>
 
@@ -198,31 +190,7 @@ function Contatos() {
 
             </div>
 
-            <div className={style["redes-area"]}>
-
-              <div className={style["titulo-area"]}>
-                <span></span>
-                <h2>Redes Sociais</h2>
-              </div>
-
-              <div className={style["redes-sociais"]}>
-
-                <a href="https://www.instagram.com/sabor.raizoficial/" className={style["wrapper-social"]}>
-                  <FaInstagram />
-                </a>
-
-                <a href="https://www.facebook.com/p/Sabor-Raiz-61560768295582/?locale=pt_BR" className={style["wrapper-social"]}>
-                  <FaFacebookF />
-                </a>
-
-                <a href="https://www.linkedin.com/company/restaurante-e-pir%C3%A3o-de-aipim-sabor-raiz/about/" className={style["wrapper-social"]}>
-                  <FaLinkedinIn />
-                </a>
-
-              </div>
-
-            </div>
-
+    
           </div>
 
         </motion.div>

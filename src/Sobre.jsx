@@ -1,7 +1,7 @@
 import React from 'react';
-import { Leaf, Heart, ShieldCheck, Truck, ArrowRight } from 'lucide-react';
+import { Heart, ShieldCheck, Truck, ArrowRight } from 'lucide-react';
 // Buscando a imagem de forma segura diretamente da pasta especificada
-import imagemSobre from '../docs/imagens/imagem_sobre.png';
+import imagemSobre from '../docs/imagens/imagem_sobre.jpg';
 import logosaborraizTerracota from '../docs/imagens/logosaborraizTerracota.png'; 
 
 export default function Sobre({ aoVoltar }) {
@@ -14,11 +14,11 @@ export default function Sobre({ aoVoltar }) {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col justify-between overflow-hidden" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+    <div className="min-h-screen relative flex flex-col justify-between overflow-y-auto" style={{ fontFamily: "'Montserrat', sans-serif" }}>
       
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
           
           .font-title {
             font-family: 'Cormorant Garamond', serif;
@@ -43,28 +43,26 @@ export default function Sobre({ aoVoltar }) {
         `}
       </style>
 
-      {/* IMAGEM DE FUNDO RÚSTICA E DISCRETA */}
+      {/* IMAGEM DE FUNDO OTIMIZADA (SEM TRÁFEGO DE BLUR) */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 ease-out hover:scale-105"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url(${imagemSobre})` 
         }}
       >
-        {/* Filtro profissional quente para mesclar a imagem de fundo com o tom creme do site */}
-        <div className="absolute inset-0 backdrop-blur-[1px]" style={{ backgroundColor: `${colors.cream}E0` }}></div>
+        {/* Substituído o backdrop-blur por um overlay de cor sólida ligeiramente mais opaca para simular o efeito sem pesar */}
+        <div className="absolute inset-0" style={{ backgroundColor: `${colors.cream}F2` }}></div>
       </div>
 
       {/* PAINEL CENTRAL FLUTUANTE */}
       <main className="relative z-10 flex-grow py-16 px-4 md:px-8 max-w-4xl w-full mx-auto flex flex-col justify-center items-center">
         
-        <div className="w-full bg-white/75 backdrop-blur-md rounded-sm border p-8 md:p-14 shadow-2xl border-white/50 flex flex-col items-center">
+                <div className="w-full bg-white/70 rounded-sm border p-8 md:p-14 shadow-xl border-gray-100 flex flex-col items-center">
           
           {/* Topo Decorado */}
           <div className="text-center mb-8"> 
-
-            <img src={logosaborraizTerracota} alt="Logo Sabor Raiz" className="mx-auto mb-1 w-24 h-auto"/>
+            <img src={logosaborraizTerracota} alt="Logo Sabor Raiz" className="mx-auto mb-1 w-24 h-auto" loading="lazy" />
             <div className="flex items-center justify-center gap-3 mb-2">
-
               <span className="h-px w-6" style={{ backgroundColor: colors.gold }}></span>
               <span className="uppercase tracking-[0.25em] text-[10px] font-bold" style={{ color: colors.terracotta }}>Nossa Origem</span>
               <span className="h-px w-6" style={{ backgroundColor: colors.gold }}></span>
